@@ -1,0 +1,311 @@
+eval_window:
+  hours: 744
+  align: utc_hourly
+  note: Use entire month; cross-correlate all site pairs on shared UTC index
+states:
+  AL:
+    iso: MISO
+    hub: MS.HUB
+    timezone: America/Chicago
+    coverage: proxy
+    note: MISO SE proxy
+  AK:
+    iso: CAISO
+    hub: NP15
+    timezone: America/Anchorage
+    coverage: proxy
+    note: continental proxy — AK grid isolated
+  AZ:
+    iso: CAISO
+    hub: SP15
+    timezone: America/Phoenix
+    coverage: proxy
+    note: CAISO WECC proxy
+  AR:
+    iso: MISO
+    hub: ARKANSAS.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  CA:
+    iso: CAISO
+    hub: NP15
+    timezone: America/Los_Angeles
+    coverage: direct
+    note: CAISO zone
+  CO:
+    iso: CAISO
+    hub: SP15
+    timezone: America/Denver
+    coverage: proxy
+    note: CAISO WECC proxy
+  CT:
+    iso: ISNE
+    hub: .Z.CONNECTICUT
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  DE:
+    iso: PJM
+    hub: DPL
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  DC:
+    iso: PJM
+    hub: PEPCO
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  FL:
+    iso: MISO
+    hub: LOUISIANA.HUB
+    timezone: America/New_York
+    coverage: proxy
+    note: Southeast proxy — FL not in ISO DA market
+  GA:
+    iso: MISO
+    hub: TEXAS.HUB
+    timezone: America/New_York
+    coverage: proxy
+    note: MISO SE proxy — GA not in ISO DA market
+  HI:
+    iso: CAISO
+    hub: SP15
+    timezone: Pacific/Honolulu
+    coverage: proxy
+    note: continental proxy — HI grid isolated
+  ID:
+    iso: CAISO
+    hub: ZP26
+    timezone: America/Boise
+    coverage: direct
+    note: CAISO zone
+  IL:
+    iso: MISO
+    hub: ILLINOIS.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  IN:
+    iso: MISO
+    hub: INDIANA.HUB
+    timezone: America/Indiana/Indianapolis
+    coverage: direct
+    note: MISO hub
+  IA:
+    iso: MISO
+    hub: MINN.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  KS:
+    iso: SPP
+    hub: SPPNORTH_HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: SPP hub
+  KY:
+    iso: PJM
+    hub: EKPC
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  LA:
+    iso: MISO
+    hub: LOUISIANA.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  ME:
+    iso: ISNE
+    hub: .Z.MAINE
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  MD:
+    iso: PJM
+    hub: BGE
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  MA:
+    iso: ISNE
+    hub: .Z.SEMASS
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  MI:
+    iso: MISO
+    hub: MICHIGAN.HUB
+    timezone: America/Detroit
+    coverage: direct
+    note: MISO hub
+  MN:
+    iso: MISO
+    hub: MINN.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  MS:
+    iso: MISO
+    hub: MS.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  MO:
+    iso: SPP
+    hub: SPPSOUTH_HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: SPP hub
+  MT:
+    iso: CAISO
+    hub: ZP26
+    timezone: America/Denver
+    coverage: proxy
+    note: CAISO WECC proxy
+  NE:
+    iso: SPP
+    hub: SPPNORTH_HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: SPP hub
+  NV:
+    iso: CAISO
+    hub: SP15
+    timezone: America/Los_Angeles
+    coverage: proxy
+    note: CAISO WECC proxy
+  NH:
+    iso: ISNE
+    hub: .Z.NEWHAMPSHIRE
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  NJ:
+    iso: PJM
+    hub: PSEG
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  NM:
+    iso: CAISO
+    hub: ZP26
+    timezone: America/Denver
+    coverage: proxy
+    note: CAISO WECC proxy
+  NY:
+    iso: NYISO
+    hub: CAPITL
+    timezone: America/New_York
+    coverage: direct
+    note: NYISO zone
+  NC:
+    iso: PJM
+    hub: DOMINION HUB
+    timezone: America/New_York
+    coverage: direct
+    note: PJM hub
+  ND:
+    iso: MISO
+    hub: MINN.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  OH:
+    iso: PJM
+    hub: DAY
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  OK:
+    iso: SPP
+    hub: SPPSOUTH_HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: SPP hub
+  OR:
+    iso: CAISO
+    hub: NP15
+    timezone: America/Los_Angeles
+    coverage: proxy
+    note: CAISO WECC proxy
+  PA:
+    iso: PJM
+    hub: PPL
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  RI:
+    iso: ISNE
+    hub: .Z.RHODEISLAND
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  SC:
+    iso: MISO
+    hub: LOUISIANA.HUB
+    timezone: America/New_York
+    coverage: proxy
+    note: Southeast proxy — SC not in ISO DA market
+  SD:
+    iso: SPP
+    hub: SPPNORTH_HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: SPP hub
+  TN:
+    iso: MISO
+    hub: ARKANSAS.HUB
+    timezone: America/Chicago
+    coverage: proxy
+    note: MISO proxy — TN not in ISO DA market
+  TX:
+    iso: ERCOT
+    hub: LZ_NORTH
+    timezone: America/Chicago
+    coverage: direct
+    note: ERCOT load zone
+  UT:
+    iso: CAISO
+    hub: SP15
+    timezone: America/Denver
+    coverage: proxy
+    note: CAISO WECC proxy
+  VT:
+    iso: ISNE
+    hub: .Z.VERMONT
+    timezone: America/New_York
+    coverage: direct
+    note: ISNE load zone
+  VA:
+    iso: PJM
+    hub: DOM
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  WA:
+    iso: CAISO
+    hub: NP15
+    timezone: America/Los_Angeles
+    coverage: proxy
+    note: CAISO WECC proxy
+  WV:
+    iso: PJM
+    hub: AEP
+    timezone: America/New_York
+    coverage: direct
+    note: PJM zone
+  WI:
+    iso: MISO
+    hub: MINN.HUB
+    timezone: America/Chicago
+    coverage: direct
+    note: MISO hub
+  WY:
+    iso: CAISO
+    hub: SP15
+    timezone: America/Denver
+    coverage: proxy
+    note: CAISO WECC proxy

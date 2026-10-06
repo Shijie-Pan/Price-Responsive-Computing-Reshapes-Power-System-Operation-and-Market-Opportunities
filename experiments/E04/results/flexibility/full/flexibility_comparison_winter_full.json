@@ -1,0 +1,482 @@
+{
+  "case": "texas7",
+  "season": "winter",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
+  "load_accounting": "b2_proportional_installed",
+  "reference_scenario": "no_dc",
+  "window": {
+    "eval_start": 0,
+    "eval_length": 168,
+    "map_snapshot_idx": 50,
+    "map_snapshot_label": "2030-01-03 02:00",
+    "map_snapshot_selection": "max_delta_branches_vs_no_dc",
+    "map_impact_score": 2650
+  },
+  "portfolios": {
+    "no_dc": {
+      "solver_status": "ok",
+      "objective_usd": 69234175.86630249,
+      "lopf_ok": true,
+      "runtime_seconds": 6642.428584814072,
+      "peak_line_loading_pct": 58.889307953165336,
+      "peak_transmission_loading_pct": 58.889307953165336,
+      "total_generation_mw": 7143705.888769552,
+      "total_load_mw": 7093352.9055,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 50,
+      "map_snapshot_idx": 50,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 24.8343,
+      "n_overloaded": 16,
+      "n_lines_at_or_above_90pct": 22,
+      "congested_lines": [
+        {
+          "line": "123",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "1295",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1318",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1350",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1376",
+          "loading_pct": 100.0,
+          "capacity_mw": 150.0
+        },
+        {
+          "line": "1527",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "17",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1753",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "176",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "20",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "233",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "611",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "625",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "763",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "84",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "931",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        }
+      ],
+      "critical_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot_label": "2030-01-03 02:00",
+      "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
+      "scenario": "no_dc",
+      "power_csv": null,
+      "max_voltage_deviation": 0.0,
+      "voltage_violation_count": 0,
+      "max_voltage_deviation_pu": 0.0,
+      "mean_voltage_deviation_pu": 0.0,
+      "n_buses_checked": 1250,
+      "voltage_limits_pu": [
+        0.94,
+        1.06
+      ],
+      "violating_bus_ids": [],
+      "pf_converged": null,
+      "pf_backend_voltage": "pypsa_ac_pf",
+      "snapshot_idx": 50,
+      "snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "delta_peak_loading_pct_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_vs_no_dc": 0,
+      "delta_max_voltage_deviation_pu_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_total_vs_no_dc": 0
+    },
+    "baseline": {
+      "solver_status": "ok",
+      "objective_usd": 6230735074.997292,
+      "lopf_ok": true,
+      "runtime_seconds": 7493.36238694191,
+      "peak_line_loading_pct": 62.97006362576273,
+      "peak_transmission_loading_pct": 62.97006362576273,
+      "total_generation_mw": 56730320.549106374,
+      "total_load_mw": 8136114.657096,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 50,
+      "map_snapshot_idx": 50,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 29.9669,
+      "n_overloaded": 35,
+      "n_lines_at_or_above_90pct": 57,
+      "congested_lines": [
+        {
+          "line": "1",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "605",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "415",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "454",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "466",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "489",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "520",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "540",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "604",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "606",
+          "loading_pct": 100.0,
+          "capacity_mw": 400.0
+        },
+        {
+          "line": "1082",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "611",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "62",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "658",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "710",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "780",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "849",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "885",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "372",
+          "loading_pct": 100.0,
+          "capacity_mw": 310.0
+        },
+        {
+          "line": "303",
+          "loading_pct": 100.0,
+          "capacity_mw": 600.0
+        },
+        {
+          "line": "232",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "20",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "1091",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1160",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "120",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        }
+      ],
+      "critical_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot_label": "2030-01-03 02:00",
+      "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
+      "scenario": "baseline",
+      "power_csv": "experiments/E07/merged_power/power_merged_baseline_winter.csv",
+      "max_voltage_deviation": 0.0,
+      "voltage_violation_count": 0,
+      "max_voltage_deviation_pu": 0.0,
+      "mean_voltage_deviation_pu": 0.0,
+      "n_buses_checked": 1250,
+      "voltage_limits_pu": [
+        0.94,
+        1.06
+      ],
+      "violating_bus_ids": [],
+      "pf_converged": null,
+      "pf_backend_voltage": "pypsa_ac_pf",
+      "snapshot_idx": 50,
+      "snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "delta_peak_loading_pct_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_vs_no_dc": 0,
+      "delta_max_voltage_deviation_pu_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_total_vs_no_dc": 0
+    },
+    "reallocation_slack_termination": {
+      "solver_status": "ok",
+      "objective_usd": 12910359651.720535,
+      "lopf_ok": true,
+      "runtime_seconds": 7757.846054077148,
+      "peak_line_loading_pct": 71.88800830255092,
+      "peak_transmission_loading_pct": 71.88800830255092,
+      "total_generation_mw": 118293530.61274186,
+      "total_load_mw": 8098299.260057,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 50,
+      "map_snapshot_idx": 50,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 31.0954,
+      "n_overloaded": 41,
+      "n_lines_at_or_above_90pct": 60,
+      "congested_lines": [
+        {
+          "line": "1",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "176",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "207",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "221",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "222",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "233",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "303",
+          "loading_pct": 100.0,
+          "capacity_mw": 600.0
+        },
+        {
+          "line": "372",
+          "loading_pct": 100.0,
+          "capacity_mw": 310.0
+        },
+        {
+          "line": "489",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "496",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "540",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "604",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "605",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "611",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "62",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "710",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "789",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "84",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "849",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "20",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "1753",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1082",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "174",
+          "loading_pct": 100.0,
+          "capacity_mw": 127.4
+        },
+        {
+          "line": "1091",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1160",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        }
+      ],
+      "critical_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "map_snapshot_label": "2030-01-03 02:00",
+      "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
+      "scenario": "reallocation_slack_termination",
+      "power_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_winter.csv",
+      "max_voltage_deviation": 0.0,
+      "voltage_violation_count": 0,
+      "max_voltage_deviation_pu": 0.0,
+      "mean_voltage_deviation_pu": 0.0,
+      "n_buses_checked": 1250,
+      "voltage_limits_pu": [
+        0.94,
+        1.06
+      ],
+      "violating_bus_ids": [],
+      "pf_converged": null,
+      "pf_backend_voltage": "pypsa_ac_pf",
+      "snapshot_idx": 50,
+      "snapshot": "(2030, Timestamp('2030-01-03 02:00:00'))",
+      "delta_peak_loading_pct_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_vs_no_dc": 0,
+      "delta_max_voltage_deviation_pu_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_total_vs_no_dc": 0
+    }
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "case": "texas7",
+  "season": "summer",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
+  "load_accounting": "b2_proportional_installed",
+  "reference_scenario": "no_dc",
+  "window": {
+    "eval_start": 0,
+    "eval_length": 168,
+    "map_snapshot_idx": 10,
+    "map_snapshot_label": "2030-07-01 10:00",
+    "map_snapshot_selection": "max_delta_branches_vs_no_dc",
+    "map_impact_score": 2456
+  },
+  "portfolios": {
+    "no_dc": {
+      "solver_status": "ok",
+      "objective_usd": 58305255.43287277,
+      "lopf_ok": true,
+      "runtime_seconds": 4456.172617435455,
+      "peak_line_loading_pct": 57.74585185888873,
+      "peak_transmission_loading_pct": 57.74585185888873,
+      "total_generation_mw": 7152483.85420889,
+      "total_load_mw": 7093352.9055,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 11,
+      "map_snapshot_idx": 10,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 23.5323,
+      "n_overloaded": 36,
+      "n_lines_at_or_above_90pct": 46,
+      "congested_lines": [
+        {
+          "line": "1227",
+          "loading_pct": 100.0,
+          "capacity_mw": 2020.0
+        },
+        {
+          "line": "123",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "233",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "29",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "32",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "321",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "33",
+          "loading_pct": 100.0,
+          "capacity_mw": 820.0
+        },
+        {
+          "line": "337",
+          "loading_pct": 100.0,
+          "capacity_mw": 245.0
+        },
+        {
+          "line": "34",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "424",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "425",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "44",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "577",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "74",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "82",
+          "loading_pct": 100.0,
+          "capacity_mw": 710.0
+        },
+        {
+          "line": "83",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "84",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "9",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "92",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "20",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "196",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1886",
+          "loading_pct": 100.0,
+          "capacity_mw": 150.0
+        },
+        {
+          "line": "1421",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1248",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1260",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        }
+      ],
+      "critical_snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "map_snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "map_snapshot_label": "2030-07-01 10:00",
+      "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
+      "scenario": "no_dc",
+      "power_csv": null,
+      "max_voltage_deviation": 0.0,
+      "voltage_violation_count": 0,
+      "max_voltage_deviation_pu": 0.0,
+      "mean_voltage_deviation_pu": 0.0,
+      "n_buses_checked": 1250,
+      "voltage_limits_pu": [
+        0.94,
+        1.06
+      ],
+      "violating_bus_ids": [],
+      "pf_converged": null,
+      "pf_backend_voltage": "pypsa_ac_pf",
+      "snapshot_idx": 11,
+      "snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "delta_peak_loading_pct_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_vs_no_dc": 0,
+      "delta_max_voltage_deviation_pu_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_total_vs_no_dc": 0
+    },
+    "baseline": {
+      "solver_status": "ok",
+      "objective_usd": 6614344540.926678,
+      "lopf_ok": true,
+      "runtime_seconds": 5232.16042804718,
+      "peak_line_loading_pct": 65.11990876990333,
+      "peak_transmission_loading_pct": 65.11990876990333,
+      "total_generation_mw": 61850127.092445605,
+      "total_load_mw": 8142144.006097,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 10,
+      "map_snapshot_idx": 10,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 21.9358,
+      "n_overloaded": 42,
+      "n_lines_at_or_above_90pct": 53,
+      "congested_lines": [
+        {
+          "line": "1",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "1082",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "1091",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "113",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1160",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "120",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1223",
+          "loading_pct": 100.0,
+          "capacity_mw": 2020.0
+        },
+        {
+          "line": "1227",
+          "loading_pct": 100.0,
+          "capacity_mw": 2020.0
+        },
+        {
+          "line": "1248",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1260",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1261",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1295",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1297",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1318",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1350",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1421",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1447",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "1468",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "1503",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "1527",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "1528",
+          "loading_pct": 100.0,
+          "capacity_mw": 523.0
+        },
+        {
+          "line": "174",
+          "loading_pct": 100.0,
+          "capacity_mw": 127.4
+        },
+        {
+          "line": "176",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "182",
+          "loading_pct": 100.0,
+          "capacity_mw": 155.0
+        },
+        {
+          "line": "198",
+          "loading_pct": 100.0,
+          "capacity_mw": 548.0
+        }
+      ],
+      "critical_snapshot": "(np.int32(2030), Timestamp('2030-01-01 10:00:00'))",
+      "map_snapshot": "(np.int32(2030), Timestamp('2030-01-01 10:00:00'))",
+      "map_snapshot_label": "2030-07-01 10:00",
+      "week_critical_snapshot": "(np.int32(2030), Timestamp('2030-01-01 00:00:00'))",
+      "pf_backend_voltage": null,
+      "scenario": "baseline",
+      "power_csv": "experiments/E07/merged_power/power_merged_baseline_summer.csv",
+      "delta_peak_loading_pct_vs_no_dc": 0.0
+    },
+    "reallocation_slack_termination": {
+      "solver_status": "ok",
+      "objective_usd": 8242003606.682793,
+      "lopf_ok": true,
+      "runtime_seconds": 6030.257516622543,
+      "peak_line_loading_pct": 63.18076481512487,
+      "peak_transmission_loading_pct": 63.18076481512487,
+      "total_generation_mw": 77775542.16338497,
+      "total_load_mw": 8098252.265667999,
+      "pf_backend": "pypsa_lopf",
+      "week_critical_snapshot_idx": 0,
+      "week_peak_loading_pct": 100.0,
+      "critical_snapshot_idx": 11,
+      "map_snapshot_idx": 10,
+      "peak_loading_pct": 100.0,
+      "mean_loading_pct": 22.485,
+      "n_overloaded": 37,
+      "n_lines_at_or_above_90pct": 55,
+      "congested_lines": [
+        {
+          "line": "1",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "466",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "18",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "182",
+          "loading_pct": 100.0,
+          "capacity_mw": 155.0
+        },
+        {
+          "line": "198",
+          "loading_pct": 100.0,
+          "capacity_mw": 548.0
+        },
+        {
+          "line": "20",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "207",
+          "loading_pct": 100.0,
+          "capacity_mw": 221.0
+        },
+        {
+          "line": "267",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "415",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "416",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "454",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "605",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "1082",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "606",
+          "loading_pct": 100.0,
+          "capacity_mw": 400.0
+        },
+        {
+          "line": "611",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "62",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "625",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "677",
+          "loading_pct": 100.0,
+          "capacity_mw": 149.0
+        },
+        {
+          "line": "693",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "749",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "763",
+          "loading_pct": 100.0,
+          "capacity_mw": 187.0
+        },
+        {
+          "line": "780",
+          "loading_pct": 100.0,
+          "capacity_mw": 251.0
+        },
+        {
+          "line": "176",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        },
+        {
+          "line": "174",
+          "loading_pct": 100.0,
+          "capacity_mw": 127.4
+        },
+        {
+          "line": "169",
+          "loading_pct": 100.0,
+          "capacity_mw": 98.0
+        }
+      ],
+      "critical_snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "map_snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "map_snapshot_label": "2030-07-01 10:00",
+      "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
+      "scenario": "reallocation_slack_termination",
+      "power_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_summer.csv",
+      "max_voltage_deviation": 0.0,
+      "voltage_violation_count": 0,
+      "max_voltage_deviation_pu": 0.0,
+      "mean_voltage_deviation_pu": 0.0,
+      "n_buses_checked": 1250,
+      "voltage_limits_pu": [
+        0.94,
+        1.06
+      ],
+      "violating_bus_ids": [],
+      "pf_converged": null,
+      "pf_backend_voltage": "pypsa_ac_pf",
+      "snapshot_idx": 11,
+      "snapshot": "(2030, Timestamp('2030-01-01 11:00:00'))",
+      "delta_peak_loading_pct_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_vs_no_dc": 0,
+      "delta_max_voltage_deviation_pu_vs_no_dc": 0.0,
+      "delta_voltage_violation_count_total_vs_no_dc": 0
+    }
+  }
+}

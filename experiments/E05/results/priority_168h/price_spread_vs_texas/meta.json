@@ -1,0 +1,14 @@
+{
+  "texas_reference_bus": "p60",
+  "definition": "Delta_p = p_i - p_Texas; D=(A+-A-)/(A++A-); M=mean|Delta_p|",
+  "scenarios": [
+    "no_dc",
+    "baseline",
+    "reallocation_slack_termination"
+  ],
+  "seasons": [
+    "summer",
+    "winter"
+  ],
+  "tag": "priority_168h"
+}

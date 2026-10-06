@@ -1,0 +1,23 @@
+{
+  "experiment": "E01_state_correlation",
+  "summaries": {
+    "winter": {
+      "season": "winter",
+      "n_states": 51,
+      "n_pairs": 1275,
+      "hours_per_series": 744
+    },
+    "summer": {
+      "season": "summer",
+      "n_states": 51,
+      "n_pairs": 1275,
+      "hours_per_series": 744
+    },
+    "combined": {
+      "season": "combined",
+      "n_states": 51,
+      "n_pairs": 1275,
+      "hours_per_series": 1488
+    }
+  }
+}

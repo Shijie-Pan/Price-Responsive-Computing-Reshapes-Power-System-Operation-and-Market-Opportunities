@@ -1,0 +1,110 @@
+{
+  "mode": "b2_proportional_installed",
+  "formula": "P_bus(t) = P_base(t) - installed_mw * P_base(t)/P_base_peak + P_e01(t)",
+  "notes": [
+    "P_e01(t) is full projected E01 power (not incremental-only).",
+    "installed_mw comes from epoch_current_mw.",
+    "LMP and E01 power profiles are reused from E02; only the PyPSA bus is remapped."
+  ],
+  "sites": {
+    "701": {
+      "site_id": 701,
+      "name": "CoreWeave Helios",
+      "operator": "coreweave",
+      "pypsa_bus": "p600 24",
+      "projected_total_mw": 528.0,
+      "installed_mw": 132.0,
+      "incremental_mw": 396.0
+    },
+    "702": {
+      "site_id": 702,
+      "name": "CoreWeave Denton TX",
+      "operator": "coreweave",
+      "pypsa_bus": "p630 443",
+      "projected_total_mw": 262.0,
+      "installed_mw": 262.0,
+      "incremental_mw": 0.0
+    },
+    "711": {
+      "site_id": 711,
+      "name": "OpenAI Stargate Abilene",
+      "operator": "oracle",
+      "pypsa_bus": "p610 40",
+      "projected_total_mw": 843.0,
+      "installed_mw": 421.0,
+      "incremental_mw": 422.0
+    },
+    "712": {
+      "site_id": 712,
+      "name": "OpenAI Stargate Shackelford",
+      "operator": "oracle",
+      "pypsa_bus": "p630 246",
+      "projected_total_mw": 1400.0,
+      "installed_mw": 0.0,
+      "incremental_mw": 1400.0
+    },
+    "713": {
+      "site_id": 713,
+      "name": "OpenAI Stargate Milam",
+      "operator": "oracle",
+      "pypsa_bus": "p630 218",
+      "projected_total_mw": 1200.0,
+      "installed_mw": 0.0,
+      "incremental_mw": 1200.0
+    },
+    "731": {
+      "site_id": 731,
+      "name": "Google DFW",
+      "operator": "google",
+      "pypsa_bus": "p630 305",
+      "projected_total_mw": 257.0,
+      "installed_mw": 180.0,
+      "incremental_mw": 77.0
+    },
+    "733": {
+      "site_id": 733,
+      "name": "Google Goodnight",
+      "operator": "google",
+      "pypsa_bus": "p480 0",
+      "projected_total_mw": 1006.0,
+      "installed_mw": 0.0,
+      "incremental_mw": 1006.0
+    },
+    "721": {
+      "site_id": 721,
+      "name": "Meta Temple",
+      "operator": "meta",
+      "pypsa_bus": "p630 5",
+      "projected_total_mw": 231.0,
+      "installed_mw": 152.0,
+      "incremental_mw": 79.0
+    },
+    "722": {
+      "site_id": 722,
+      "name": "Meta Fort Worth",
+      "operator": "meta",
+      "pypsa_bus": "p630 484",
+      "projected_total_mw": 200.0,
+      "installed_mw": 200.0,
+      "incremental_mw": 0.0
+    },
+    "741": {
+      "site_id": 741,
+      "name": "Microsoft San Antonio",
+      "operator": "microsoft",
+      "pypsa_bus": "p650 67",
+      "projected_total_mw": 314.7,
+      "installed_mw": 172.0,
+      "incremental_mw": 142.7
+    },
+    "751": {
+      "site_id": 751,
+      "name": "Amazon Pecos",
+      "operator": "amazon",
+      "pypsa_bus": "p610 12",
+      "projected_total_mw": 1500.0,
+      "installed_mw": 0.0,
+      "incremental_mw": 1500.0
+    }
+  }
+}

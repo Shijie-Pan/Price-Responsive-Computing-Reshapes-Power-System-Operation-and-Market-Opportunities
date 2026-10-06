@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "PUDL out_ferc714__hourly_estimated_state_demand",
+    "PUDL core_eia930__hourly_operations"
+  ],
+  "year": 2025,
+  "month_start_utc": "2025-07-01 00:00:00+00:00",
+  "month_end_utc_exclusive": "2025-08-01 00:00:00+00:00",
+  "aggregation": "UTC hour-of-day mean over full calendar month",
+  "n_nodes": 101,
+  "n_states": 48,
+  "n_bas": 53,
+  "alignment_conus": {
+    "n_hours": 744,
+    "corr": 0.9893504229318305,
+    "mean_ratio_state_over_eia930": 1.0794977807564718
+  },
+  "map_hours_utc": [
+    21,
+    23,
+    1
+  ],
+  "panel_letters": [
+    "a",
+    "b",
+    "c"
+  ],
+  "peak_roles": [
+    "East peak",
+    "Central peak",
+    "West peak"
+  ],
+  "case": "background",
+  "dc_overlay": null,
+  "display": "log10((P_peak-P)/P_peak); peak is the max hour-of-day mean; floor 0.001, cap 0.2",
+  "vmin": -3.0,
+  "vmax": -0.6989700043360187
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Texas E02 dense ERCOT s1250 (1890 lines). Reuses E02 merged power; LMP/profile unchanged.",
+  "network_path": "experiments/data/networks/texas/elec_s1250.nc",
+  "network_label": "ERCOT s1250 unclustered (1890 lines, 168 h)",
+  "plot_scale": "texas",
+  "merged_power_dir": "experiments/E07/merged_power",
+  "load_accounting": "b2_proportional_installed",
+  "fcfs_scenario": "baseline",
+  "reference_scenario": "no_dc",
+  "full_flex_scenario": "reallocation_slack_termination",
+  "eval_length_hours": 168,
+  "spot_extra_hours": 24,
+  "solver": "gurobi"
+}

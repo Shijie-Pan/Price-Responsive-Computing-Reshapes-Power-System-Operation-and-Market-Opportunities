@@ -1,0 +1,9 @@
+{
+  "texas_reference": "TX hub (registry)",
+  "definition": "Delta_p = p_i - p_Texas; D=(A+-A-)/(A++A-); M=mean|Delta_p|",
+  "seasons": [
+    "summer",
+    "winter",
+    "annual"
+  ]
+}

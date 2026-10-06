@@ -1,0 +1,12 @@
+{
+  "references": [
+    "CA",
+    "TX",
+    "NY"
+  ],
+  "definition": "Delta_p = p_i - p_ref; D=(A+-A-)/(A++A-); M=mean|Delta_p|",
+  "seasons": [
+    "summer",
+    "winter"
+  ]
+}

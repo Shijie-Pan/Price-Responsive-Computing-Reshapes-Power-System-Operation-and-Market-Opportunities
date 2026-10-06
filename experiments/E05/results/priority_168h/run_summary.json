@@ -1,0 +1,21 @@
+{
+  "network": "experiments/data/networks/usa/elec_s500_c134c.nc",
+  "eval_start": 0,
+  "eval_length": 168,
+  "seasons": {
+    "summer": {
+      "baseline": {
+        "label": "First come first serve",
+        "campus_mean_abs_delta_lmp": 3.435,
+        "mean_abs_pairwise_lmp": 23.329320683436276,
+        "mean_hourly_lmp_std": 117.57823744889386,
+        "mean_n_congested": 101.08928571428571,
+        "peak_loading_pct": 100.0,
+        "total_dc_mwh": 2864335.144,
+        "objective_usd": 833183294.1996546,
+        "delta_campus_mae_vs_no_dc": null,
+        "delta_pairwise_mae_vs_no_dc": null
+      }
+    }
+  }
+}

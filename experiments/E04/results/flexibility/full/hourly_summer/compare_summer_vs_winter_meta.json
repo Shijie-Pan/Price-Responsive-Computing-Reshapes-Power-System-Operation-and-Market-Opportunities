@@ -1,0 +1,8 @@
+{
+  "study": "Actual",
+  "map_snapshot_idx": 53,
+  "map_snapshot_label": "2030-01-03 05:00 / 2030-07-03 05:00",
+  "map_snapshot_selection": "max_delta_branches_summer_vs_winter",
+  "map_impact_score": 2803,
+  "delta_threshold_pp": 5.0
+}

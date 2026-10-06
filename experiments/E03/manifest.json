@@ -1,0 +1,79 @@
+{
+  "policy": {
+    "forbid_auto_latest": true
+  },
+  "power_trajectories": {
+    "amazon/summer/baseline": {
+      "path": "experiments/E03/results/amazon/summer/power_consumption_baseline_summer.csv"
+    },
+    "amazon/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/amazon/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "amazon/winter/baseline": {
+      "path": "experiments/E03/results/amazon/winter/power_consumption_baseline_winter.csv"
+    },
+    "amazon/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/amazon/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    },
+    "google/summer/baseline": {
+      "path": "experiments/E03/results/google/summer/power_consumption_baseline_summer.csv"
+    },
+    "google/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/google/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "google/winter/baseline": {
+      "path": "experiments/E03/results/google/winter/power_consumption_baseline_winter.csv"
+    },
+    "google/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/google/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    },
+    "meta/summer/baseline": {
+      "path": "experiments/E03/results/meta/summer/power_consumption_baseline_summer.csv"
+    },
+    "meta/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/meta/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "meta/winter/baseline": {
+      "path": "experiments/E03/results/meta/winter/power_consumption_baseline_winter.csv"
+    },
+    "meta/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/meta/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    },
+    "microsoft/summer/baseline": {
+      "path": "experiments/E03/results/microsoft/summer/power_consumption_baseline_summer.csv"
+    },
+    "microsoft/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/microsoft/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "microsoft/winter/baseline": {
+      "path": "experiments/E03/results/microsoft/winter/power_consumption_baseline_winter.csv"
+    },
+    "microsoft/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/microsoft/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    },
+    "oracle/summer/baseline": {
+      "path": "experiments/E03/results/oracle/summer/power_consumption_baseline_summer.csv"
+    },
+    "oracle/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/oracle/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "oracle/winter/baseline": {
+      "path": "experiments/E03/results/oracle/winter/power_consumption_baseline_winter.csv"
+    },
+    "oracle/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/oracle/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    },
+    "coreweave/summer/baseline": {
+      "path": "experiments/E03/results/coreweave/summer/power_consumption_baseline_summer.csv"
+    },
+    "coreweave/summer/reallocation_slack_termination": {
+      "path": "experiments/E03/results/coreweave/summer/power_consumption_reallocation_slack_termination_summer.csv"
+    },
+    "coreweave/winter/baseline": {
+      "path": "experiments/E03/results/coreweave/winter/power_consumption_baseline_winter.csv"
+    },
+    "coreweave/winter/reallocation_slack_termination": {
+      "path": "experiments/E03/results/coreweave/winter/power_consumption_reallocation_slack_termination_winter.csv"
+    }
+  }
+}

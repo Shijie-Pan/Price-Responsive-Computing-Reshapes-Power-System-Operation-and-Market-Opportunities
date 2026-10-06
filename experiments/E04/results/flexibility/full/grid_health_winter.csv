@@ -1,0 +1,4 @@
+scenario,peak_loading_pct,n_overloaded,n_lines_at_or_above_90pct,voltage_violation_count,max_voltage_deviation_pu,pf_converged,voltage_notes
+no_dc,100.0,16,22,0,0.0,,
+baseline,100.0,35,57,0,0.0,,
+reallocation_slack_termination,100.0,41,60,0,0.0,,
