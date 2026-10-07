@@ -9,7 +9,7 @@ site_ids: [701, 702, 711, 712, 713, 731, 733, 721, 722, 741, 751]
 full_job_scenario: reallocation_slack_termination
 fcfs_scenario: baseline
 
-merged_power_dir: experiments/E07/merged_power
+merged_power_dir: experiments/E08/merged_power
 
 use_reference_envelope: true
 p_min_floor_mw: 10.0

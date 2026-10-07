@@ -3,7 +3,7 @@
   "network_path": "experiments/data/networks/texas/elec_s1250.nc",
   "network_label": "ERCOT s1250 unclustered (1890 lines, 168 h)",
   "plot_scale": "texas",
-  "merged_power_dir": "experiments/E07/merged_power",
+  "merged_power_dir": "experiments/E08/merged_power",
   "load_accounting": "b2_proportional_installed",
   "fcfs_scenario": "baseline",
   "reference_scenario": "no_dc",

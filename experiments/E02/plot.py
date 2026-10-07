@@ -26,7 +26,7 @@ from experiments.lib.figure_common import *  # noqa: F403
 OUT = ROOT / "experiments/E02/figures"
 
 def build_fig1() -> Path:
-    return _build_spread_state_board("summer", OUT / "Fig1_interstate_LMP_phase_lag.png")
+    return _build_spread_state_board("summer", OUT / "Fig2_interstate_LMP_phase_lag.png")
 
 
 def _states_from_deposited_metrics(df: pd.DataFrame):
@@ -526,7 +526,7 @@ def build_extdata_directional_motivation() -> Path:
         handlelength=1.4,
     )
 
-    return save_figure(fig, OUT / "ExtData_Fig6_directional_motivation.png")
+    return save_figure(fig, OUT / "ExtData_Fig2_directional_motivation.png")
 
 
 _SITE_SHORT = {
@@ -549,7 +549,7 @@ _SITE_SHORT = {
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     print(build_fig1())
-    print(_build_spread_state_board("winter", OUT / "ExtData_Fig1_price_direction_magnitude_winter.png"))
+    print(_build_spread_state_board("winter", OUT / "ExtData_Fig2_price_direction_magnitude_winter.png"))
     print(build_extdata_directional_motivation())
 
 

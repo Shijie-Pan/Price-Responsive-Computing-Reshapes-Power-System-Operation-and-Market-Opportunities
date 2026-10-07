@@ -215,7 +215,7 @@
         "energy_cost_error_pct": 0.0,
         "peak_total_error_pct": -0.0,
         "max_ramp_error_pct": 0.0,
-        "source_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_winter.csv"
+        "source_csv": "experiments/E08/merged_power/power_merged_reallocation_slack_termination_winter.csv"
       },
       "FCFS": {
         "model": "FCFS",
@@ -243,7 +243,7 @@
         "energy_cost_error_pct": 31.721,
         "peak_total_error_pct": -23.06,
         "max_ramp_error_pct": -88.272,
-        "source_csv": "experiments/E07/merged_power/power_merged_baseline_winter.csv"
+        "source_csv": "experiments/E08/merged_power/power_merged_baseline_winter.csv"
       },
       "FIXED_DC": {
         "model": "FIXED_DC",
@@ -517,7 +517,7 @@
         "energy_cost_error_pct": 0.0,
         "peak_total_error_pct": 0.0,
         "max_ramp_error_pct": 0.0,
-        "source_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_summer.csv"
+        "source_csv": "experiments/E08/merged_power/power_merged_reallocation_slack_termination_summer.csv"
       },
       "FCFS": {
         "model": "FCFS",
@@ -545,7 +545,7 @@
         "energy_cost_error_pct": 21.484,
         "peak_total_error_pct": -22.213,
         "max_ramp_error_pct": -88.272,
-        "source_csv": "experiments/E07/merged_power/power_merged_baseline_summer.csv"
+        "source_csv": "experiments/E08/merged_power/power_merged_baseline_summer.csv"
       },
       "FIXED_DC": {
         "model": "FIXED_DC",

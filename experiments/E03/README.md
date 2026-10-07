@@ -8,7 +8,7 @@ Job-level schedules for six operators and eleven Texas sites. `baseline` is pric
 python experiments/E03/plot.py
 ```
 
-That writes `figures/Fig2_job_level_flexibility.png` and `figures/ExtData_Fig_texas_site_trajectories.png`.
+That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png`.
 
 To solve again, two local inputs are required.
 

@@ -185,7 +185,7 @@ def build_fig2() -> Path:
         columnspacing=1.4,
     )
     fig.align_ylabels([ax_a, ax_c])
-    out = OUT / "Fig2_job_level_flexibility.png"
+    out = OUT / "Fig3_job_level_flexibility.png"
     return save_figure(fig, out)
 
 
@@ -330,7 +330,7 @@ def build_extdata_site_trajectories() -> Path:
         handletextpad=0.35,
     )
 
-    return save_figure(fig, OUT / "ExtData_Fig_texas_site_trajectories.png")
+    return save_figure(fig, OUT / "ExtData_Fig3_texas_site_trajectories.png")
 
 
 

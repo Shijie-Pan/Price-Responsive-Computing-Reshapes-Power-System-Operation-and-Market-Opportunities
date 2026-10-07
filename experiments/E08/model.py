@@ -1,4 +1,4 @@
-"""Aggregate linear schedules used for Fig. 7.
+"""Aggregate linear schedules used for Fig. 8.
 
 The formulation lives in ``experiments.lib.solve.aggregate.scheduler``.
 """

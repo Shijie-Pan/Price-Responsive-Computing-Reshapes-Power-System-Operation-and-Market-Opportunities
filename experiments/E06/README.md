@@ -19,4 +19,21 @@ The annual window is 1 August 2025 through 31 July 2026, 8760 hours, starting at
 python experiments/E06/plot.py
 ```
 
-This writes `figures/Fig5_battery_arbitrage.png`. The weekly table is not a substitute for the payback panel: the table uses model duals, and the payback panel uses the observed annual prices.
+This writes `figures/Fig6_battery_arbitrage.png`. The weekly table is not a substitute for the payback panel: the table uses model duals, and the payback panel uses the observed annual prices.
+
+## Supplementary pumped storage
+
+A separate 1 MW, 10 MWh plant uses the same price files. Round-trip efficiency is 80%. Installation cost is 3,706 USD/kW in 2021 dollars, the median 10-hour closed-loop class in the 2025 Electricity ATB. The deposited weekly values and observed-price payback are:
+
+```text
+experiments/E06/results/summer_hydro_vs_price_independent.csv
+experiments/E06/results/summer_hydro_observed_payback.json
+```
+
+Redraw without resolving the 134 buses:
+
+```text
+python experiments/E06/plot_hydro.py
+```
+
+This writes `figures/ExtData_Fig6_hydro_arbitrage.png`. It does not compare the plant with the battery.

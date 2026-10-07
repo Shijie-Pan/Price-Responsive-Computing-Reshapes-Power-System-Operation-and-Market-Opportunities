@@ -6,9 +6,11 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.collections import PatchCollection
 from matplotlib.lines import Line2D
 from matplotlib.patches import Polygon
+from matplotlib.ticker import FuncFormatter, MaxNLocator
 
 import sys
 
@@ -27,18 +29,19 @@ TEXAS_DIR = ROOT / "experiments" / "E03"
 # for offset-point labels, so each name is pulled into open map space.
 # (lon, lat, ha, va)
 LABEL_AT = {
-    733: (-100.45, 35.72, "left", "center"),   # Goodnight, east inside the panhandle
-    701: (-102.55, 33.85, "right", "center"),    # Helios, west of its marker
-    712: (-101.15, 32.95, "right", "center"),   # Shackelford, due west
-    711: (-101.15, 31.85, "right", "center"),   # Abilene, southwest; stays under Shackelford
-    722: (-98.05, 34.35, "center", "bottom"),   # Fort Worth, north of its marker
-    702: (-96.05, 33.72, "left", "center"),     # Denton, east
-    731: (-95.70, 32.15, "left", "center"),     # DFW, southeast
-    721: (-98.95, 31.05, "right", "center"),   # Temple, west
-    713: (-95.45, 30.35, "left", "center"),     # Milam, southeast
-    751: (-101.20, 30.15, "left", "center"),   # Pecos, southeast
-    741: (-98.68, 28.42, "center", "top"),      # San Antonio, south
+    733: (-100.42, 35.72, "right", "center"),  # Goodnight, inside the panhandle
+    701: (-101.25, 33.55, "right", "center"),  # Helios, west and inside Texas
+    712: (-100.70, 33.15, "right", "center"),  # Shackelford, west
+    711: (-100.70, 31.72, "right", "center"),  # Abilene, below Shackelford
+    722: (-98.35, 33.62, "right", "center"),  # Fort Worth, northwest of the cluster
+    702: (-96.45, 33.48, "left", "center"),   # Denton, east and south of the Red River
+    731: (-95.55, 32.18, "left", "center"),   # DFW, southeast
+    721: (-98.75, 31.02, "right", "center"),  # Temple, west
+    713: (-95.45, 30.28, "left", "center"),   # Milam, southeast
+    751: (-101.35, 30.22, "left", "center"),  # Pecos, southeast of the largest marker
+    741: (-98.68, 28.22, "center", "top"),    # San Antonio, south
 }
+_MARKER_AREA_PER_SQRT_MW = 12.0
 
 _PREFIXES = (
     "Google ",
@@ -58,6 +61,10 @@ def _short_name(site: dict) -> str:
             name = name[len(prefix):]
             break
     return name.replace(" TX", "")
+
+
+def _marker_area(mw: float) -> float:
+    return _MARKER_AREA_PER_SQRT_MW * np.sqrt(float(mw))
 
 
 def _load_sites() -> list[dict]:
@@ -90,18 +97,18 @@ def _draw_states(ax) -> None:
         ax.add_collection(
             PatchCollection(
                 neighbor_patches,
-                facecolor="#f3f4f6",
-                edgecolor="0.72",
-                linewidth=0.35,
+                facecolor="#f7f7f7",
+                edgecolor="#efefef",
+                linewidth=0.25,
                 zorder=1,
             )
         )
     ax.add_collection(
         PatchCollection(
             texas_patches,
-            facecolor="#fbfaf6",
-            edgecolor="0.25",
-            linewidth=0.85,
+            facecolor="#f8f7f4",
+            edgecolor="#5a5a5a",
+            linewidth=0.45,
             zorder=2,
         )
     )
@@ -119,8 +126,8 @@ def plot_roster(out: Path) -> Path:
 
     apply_figure_style()
     colors = {**OPERATOR_COLORS, "meta": "#111111"}
-    sites = _load_sites()
-    fig, ax = plt.subplots(figsize=figsize_double_col(6.15), facecolor="white")
+    sites = sorted(_load_sites(), key=lambda s: float(s["projected_total_mw"]), reverse=True)
+    fig, ax = plt.subplots(figsize=figsize_double_col(6.85), facecolor="white")
     ax.set_facecolor("white")
     _draw_states(ax)
 
@@ -131,54 +138,55 @@ def plot_roster(out: Path) -> Path:
         color = colors[site["operator"]]
         tx, ty, ha, va = LABEL_AT[sid]
         mw = int(round(float(site["projected_total_mw"])))
+        area = _marker_area(mw)
         ax.scatter(
             [lon],
             [lat],
-            s=28,
+            s=area,
             c=color,
             edgecolors="white",
-            linewidths=0.6,
+            linewidths=0.45,
             zorder=5,
         )
         ax.annotate(
-            f"{_short_name(site)} {mw}",
+            f"{_short_name(site)}  {mw:,} MW",
             xy=(lon, lat),
             xytext=(tx, ty),
             textcoords="data",
             ha=ha,
             va=va,
-            fontsize=7,
-            color="#1a1a1a",
+            fontsize=6,
+            color="#333333",
             arrowprops={
                 "arrowstyle": "-",
-                "color": "0.45",
-                "lw": 0.45,
-                "shrinkA": 1,
-                "shrinkB": 4,
-            },
-            bbox={
-                "boxstyle": "round,pad=0.12",
-                "facecolor": "white",
-                "edgecolor": "none",
-                "alpha": 0.94,
+                "color": "#b5b5b5",
+                "lw": 0.35,
+                "shrinkA": float(np.sqrt(area) / 2.0 + 0.6),
+                "shrinkB": 2.5,
             },
             zorder=6,
             clip_on=False,
+            annotation_clip=False,
         )
 
-    ax.set_xlim(-106.9, -93.3)
-    ax.set_ylim(25.7, 36.6)
-    ax.set_aspect("equal", adjustable="box")
-    ax.set_xlabel("Longitude")
-    ax.set_ylabel("Latitude")
-    ax.set_title("Site capacity (MW)", fontsize=8, pad=4)
-    ax.tick_params(labelsize=6)
+    lat0 = np.deg2rad(31.5)
+    ax.set_xlim(-106.65, -93.45)
+    ax.set_ylim(25.55, 36.65)
+    ax.set_aspect(1.0 / np.cos(lat0), adjustable="box")
+    ax.set_xlabel("Longitude", color="#555555")
+    ax.set_ylabel("Latitude", color="#555555")
+    ax.xaxis.set_major_locator(MaxNLocator(5))
+    ax.yaxis.set_major_locator(MaxNLocator(6))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _p: f"{abs(v):.0f}\u00b0W"))
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _p: f"{v:.0f}\u00b0N"))
+    ax.tick_params(labelsize=6, length=2.2, width=0.35, color="0.65", labelcolor="0.45")
     for spine in ax.spines.values():
         spine.set_visible(True)
-        spine.set_linewidth(0.5)
-        spine.set_color("0.35")
-    ax.grid(True, color="0.88", linewidth=0.35, zorder=0)
-    ax.legend(
+        spine.set_linewidth(0.35)
+        spine.set_color("0.75")
+    ax.grid(False)
+
+    operator_legend = ax.legend(
         handles=[
             Line2D(
                 [0],
@@ -186,25 +194,27 @@ def plot_roster(out: Path) -> Path:
                 marker="o",
                 color="none",
                 markerfacecolor=colors[op],
-                markeredgecolor="white",
-                markeredgewidth=0.4,
-                markersize=5.5,
+                markeredgecolor="0.35",
+                markeredgewidth=0.3,
+                markersize=4.6,
                 label=OPERATOR_LABELS[op],
             )
             for op in OPERATOR_ORDER
         ],
+        title="Operator",
         loc="lower left",
-        frameon=True,
-        fancybox=False,
-        edgecolor="0.75",
-        framealpha=1,
-        fontsize=7,
+        bbox_to_anchor=(0.0, 0.0),
+        frameon=False,
+        fontsize=6,
+        title_fontsize=7,
         ncol=2,
-        borderpad=0.45,
-        handletextpad=0.35,
+        borderaxespad=0.15,
+        handletextpad=0.3,
         columnspacing=0.8,
+        labelspacing=0.25,
     )
-    fig.subplots_adjust(left=0.08, right=0.985, top=0.95, bottom=0.07)
+    plt.setp(operator_legend.get_title(), fontweight="regular")
+    fig.subplots_adjust(left=0.075, right=0.985, top=0.975, bottom=0.055)
     out.parent.mkdir(parents=True, exist_ok=True)
     return save_figure(fig, out)
 

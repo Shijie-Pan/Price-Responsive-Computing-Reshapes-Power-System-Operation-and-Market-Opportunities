@@ -1819,7 +1819,7 @@
       "snapshot_idx": 46,
       "snapshot": "(2030, Timestamp('2030-01-02 22:00:00'))",
       "scenario": "FULL_JOB",
-      "power_csv": "experiments/E07/results/summer/power_full_job_summer.csv",
+      "power_csv": "experiments/E08/results/summer/power_full_job_summer.csv",
       "grid_cost_change_vs_no_dc": 5502207054.795349
     },
     "AGG_ENERGY": {
@@ -2737,7 +2737,7 @@
       "snapshot_idx": 0,
       "snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
       "scenario": "AGG_ENERGY",
-      "power_csv": "experiments/E07/results/summer/power_agg_energy_summer.csv",
+      "power_csv": "experiments/E08/results/summer/power_agg_energy_summer.csv",
       "grid_cost_change_vs_no_dc": 5072766173.120728,
       "grid_cost_change_vs_full_job": -429440881.6746216
     },
@@ -3656,7 +3656,7 @@
       "snapshot_idx": 119,
       "snapshot": "(2030, Timestamp('2030-01-05 23:00:00'))",
       "scenario": "AGG_CONT",
-      "power_csv": "experiments/E07/results/summer/power_agg_cont_summer.csv",
+      "power_csv": "experiments/E08/results/summer/power_agg_cont_summer.csv",
       "grid_cost_change_vs_no_dc": 1308825145.020935,
       "grid_cost_change_vs_full_job": -4193381909.774414
     },
@@ -4575,7 +4575,7 @@
       "snapshot_idx": 0,
       "snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
       "scenario": "AGG_POOL",
-      "power_csv": "experiments/E07/results/summer/power_agg_pool_summer.csv",
+      "power_csv": "experiments/E08/results/summer/power_agg_pool_summer.csv",
       "grid_cost_change_vs_no_dc": 5341681636.054932,
       "grid_cost_change_vs_full_job": -160525418.74041748
     }

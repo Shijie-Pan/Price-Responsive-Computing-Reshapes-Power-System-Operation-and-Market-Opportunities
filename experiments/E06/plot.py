@@ -67,7 +67,7 @@ PI_CSV = USA / "results/priority_168h/summer/baseline/bus_lmp_hourly.csv"
 PR_CSV = USA / "results/closed_loop/iter_06/lopf/summer/bus_lmp_hourly.csv"
 GEO_CSV = USA / "results/priority_168h/summer/baseline/bus_lmp_summary.csv"
 DC_META = USA / "config/dc_bus_map_meta.json"
-OUT = ROOT / "experiments/E06/figures/Fig5_battery_arbitrage.png"
+OUT = ROOT / "experiments/E06/figures/Fig6_battery_arbitrage.png"
 TABLE = ROOT / "experiments/E06/results/summer_battery_vs_price_independent.csv"
 
 POWER_MW = 1.0

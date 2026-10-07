@@ -1,1 +1,1 @@
-"""Aggregate scheduling comparison used for Fig. 7."""
+"""Aggregate scheduling comparison used for Fig. 8."""

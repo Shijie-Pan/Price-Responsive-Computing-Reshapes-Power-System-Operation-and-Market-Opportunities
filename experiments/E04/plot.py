@@ -350,7 +350,7 @@ def build_fig3() -> Path:
         )
         x_px += w_px + gap_px
 
-    out = OUT / "Fig3_congestion_relocation.png"
+    out = OUT / "Fig4_congestion_relocation.png"
     return save_figure(fig, out, pad_inches=FIG3_SAVE_PAD)
 
 

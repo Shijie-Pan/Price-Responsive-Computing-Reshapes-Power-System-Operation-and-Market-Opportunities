@@ -63,16 +63,16 @@ from experiments.lib.figure_style import (  # noqa: E402
     MAP_WSPACE,
 )
 
-MERGED = ROOT / "experiments/E08/results"
+MERGED = ROOT / "experiments/E07/results"
 NATIONWIDE_CFG = ROOT / "experiments/E03/config/texas7_operators.json"
 DATA = ROOT / "experiments/data/eia930"
 STATE_DEMAND = DATA / "out_ferc714__hourly_estimated_state_demand.parquet"
 BA_OPS = DATA / "core_eia930__hourly_operations.parquet"
 BA_CODES = DATA / "core_eia__codes_balancing_authorities.parquet"
 PLANTS = DATA / "out_eia__yearly_plants.parquet"
-OUT_RESULTS = ROOT / "experiments/E08/results"
+OUT_RESULTS = ROOT / "experiments/E07/results"
 OUT_FIG1 = ROOT / "experiments/E01/figures"
-OUT_FIG8 = ROOT / "experiments/E08/figures"
+OUT_FIG7 = ROOT / "experiments/E07/figures"
 
 DEMAND_YEAR = 2025
 # Inclusive UTC month windows (hour-of-day mean over the full month).
@@ -565,7 +565,7 @@ def build_propagation_board(season: str, case: str = "background") -> Path:
     cb.ax.tick_params(labelsize=MAP_FS_TICK, length=1.0, pad=1.0)
 
     if season == "summer" and case == "background":
-        out = OUT_FIG1 / "Fig_intro_summer_peak_load.png"
+        out = OUT_FIG1 / "Fig1_summer_peak_load.png"
     else:
         out = OUT_FIG1 / f"ExtData_Fig_usa_load_propagation_{season}{suffix}.png"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -577,8 +577,15 @@ def build_propagation_board(season: str, case: str = "background") -> Path:
 # Log color scale for (peak − load) / peak. Exact peaks are pinned to the floor.
 PEAK_GAP_FLOOR = 1e-3
 PEAK_GAP_CAP = 0.2
-# Illustrative 2045 level: data-center increment only, not written on the figure.
-DC_LOAD_SCALE = 5.0
+# The with-DC and full-flex series already use the 2030 Epoch campus projection.
+# Scale only that increment by the 2050/2030 ratio in EIA AEO2026 Table 5
+# (April 2026, Counterfactual Baseline): commercial electricity for
+# Data Center Servers, 1.520461 / 0.607868 quadrillion Btu.
+# Written on Fig. 7.
+AEO_DC_QUAD_2030 = 0.6078678369522095
+AEO_DC_QUAD_2050 = 1.520461201667786
+FORECAST_YEAR = 2050
+DC_LOAD_SCALE = AEO_DC_QUAD_2050 / AEO_DC_QUAD_2030
 
 
 def _log_fraction_below_peak(avg: pd.DataFrame) -> pd.DataFrame:
@@ -622,7 +629,13 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
         (label, avg if i == 0 else bg + DC_LOAD_SCALE * (avg - bg))
         for i, (label, avg) in enumerate(frames)
     ]
-    if only == "full_flex":
+    row_years = None
+    letters = ("a", "b", "c")
+    if only == "full_flex" and season == "summer":
+        frames = [frames[0], frames[2]]
+        row_years = (DEMAND_YEAR, FORECAST_YEAR)
+        letters = ("a", "b", "c", "d", "e", "f")
+    elif only == "full_flex":
         frames = [frames[2]]
 
     hours = MAP_HOURS[season]
@@ -641,7 +654,7 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
     dy = float(CONUS_YLIM[1] - CONUS_YLIM[0])
     n_col = len(hours)
     n_row = len(frames)
-    gutter_w, gutter_h = 0.035, 0.22
+    gutter_w, gutter_h = 0.035, 0.48 if row_years is not None else 0.22
     left_m = 0.07 if only == "full_flex" else 0.09
     left_m, right_m, bot_m, top_m = left_m, 0.90, 0.10 if n_row == 1 else 0.07, 0.90 if n_row == 1 else 0.94
     panel_w_in = fig_w * (right_m - left_m) / (n_col + (n_col - 1) * gutter_w)
@@ -658,7 +671,6 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
     if n_row == 1:
         axes = np.atleast_2d(axes)
 
-    letters = ("a", "b", "c")
     for r, (label, avg) in enumerate(frames):
         score = _log_fraction_below_peak(avg)
         for c, hour in enumerate(hours):
@@ -708,13 +720,18 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
                     )
             else:
                 ax.set_yticklabels([])
+            if row_years is not None and r < n_row - 1:
+                ax.set_xticklabels([])
             if r == n_row - 1 and c == 1:
                 ax.set_xlabel("Longitude", fontsize=MAP_FS_LAB, labelpad=1)
             else:
                 ax.set_xlabel("")
-            if r == 0:
+            if row_years is not None or r == 0:
+                peak = MAP_PEAK_LABEL[season][hour]
+                letter = letters[r * n_col + c]
+                year_tag = f" ({row_years[r]})" if row_years is not None else ""
                 ax.set_title(
-                    f"{letters[c]}  {MAP_PEAK_LABEL[season][hour]}",
+                    f"{letter}  {peak}{year_tag}",
                     fontsize=MAP_FS_TAG,
                     fontweight="bold",
                     pad=3,
@@ -743,10 +760,10 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
     cb.ax.tick_params(labelsize=MAP_FS_TICK, length=1.0, pad=1.0)
 
     if only == "full_flex" and season == "summer":
-        out = OUT_FIG8 / "Fig7_load_propagation_full_flex.png"
+        out = OUT_FIG7 / "Fig7_load_propagation_full_flex.png"
     else:
         suffix = "_full_flex" if only == "full_flex" else "_summary"
-        out = OUT_FIG8 / f"ExtData_Fig_usa_load_propagation_{season}{suffix}.png"
+        out = OUT_FIG7 / f"ExtData_Fig_usa_load_propagation_{season}{suffix}.png"
     out.parent.mkdir(parents=True, exist_ok=True)
     path = save_figure(fig, out, pad_inches=0.08, bbox_inches="tight")
     print(

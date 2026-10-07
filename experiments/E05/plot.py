@@ -40,7 +40,7 @@ def build_fig5() -> Path:
     )
     return _build_usa_endogenous_contour_board(
         "summer",
-        OUT / "Fig4_endogenous_lmp_callback.png",
+        OUT / "Fig5_endogenous_lmp_callback.png",
         tag="priority_168h",
         spread_csv=spread,
     )
@@ -281,7 +281,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     print(build_fig5())
     print(_build_usa_endogenous_contour_board(
-        "winter", OUT / "ExtData_Fig_usa_endogenous_maps_winter.png", tag="priority_168h"
+        "winter", OUT / "ExtData_Fig5_usa_endogenous_maps_winter.png", tag="priority_168h"
     ))
 
 
