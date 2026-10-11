@@ -220,8 +220,8 @@ def plot_roster(out: Path) -> Path:
 
 
 def main() -> None:
-    out = ROOT / "experiments" / "E04" / "figures" / "ExtData_Fig4_texas_campus_map.png"
-    plot_roster(out)
+    out = ROOT / "experiments" / "E03" / "figures" / "ExtData_Fig3_texas_campus_map.png"
+    print(plot_roster(out))
 
 
 if __name__ == "__main__":

@@ -29,7 +29,7 @@
   "eval_length": 168,
   "total_dc_mwh": 2718741.506,
   "campus_mean_abs_delta_lmp": 2.587,
-  "power_csv": "experiments/E08/merged_power/power_merged_reallocation_slack_termination_summer.csv",
+  "power_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_summer.csv",
   "artifacts": {
     "bus_lmp_hourly": "experiments/E05/results/priority_168h/summer/reallocation_slack_termination/bus_lmp_hourly.csv",
     "site_lmp_hourly": "experiments/E05/results/priority_168h/summer/reallocation_slack_termination/site_lmp_hourly.csv",

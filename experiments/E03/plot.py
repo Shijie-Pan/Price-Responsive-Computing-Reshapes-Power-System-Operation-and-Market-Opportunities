@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Fig. 3 and Supplementary Fig. 12."""
+"""Fig. 3 and Supplementary Fig. 6 (site trajectories)."""
 
 import csv
 import json
@@ -243,7 +243,7 @@ def build_extdata_site_trajectories() -> Path:
         facecolor="white",
         gridspec_kw={"hspace": 0.72, "wspace": 0.10},
     )
-    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.05, top=0.88)
+    fig.subplots_adjust(left=0.055, right=0.985, bottom=0.05, top=0.88)
 
     hours = 168
     t = np.arange(hours)
@@ -304,7 +304,7 @@ def build_extdata_site_trajectories() -> Path:
             tick_left.append(fig.transFigure.inverted().transform((bb.x0, bb.y0))[0])
     y_top = axes[0, 0].get_position().y1
     y_bot = axes[-1, 0].get_position().y0
-    x_power = (min(tick_left) if tick_left else 0.04) - 0.008
+    x_power = max(0.012, (min(tick_left) if tick_left else 0.04) - 0.006)
     fig.text(
         x_power,
         0.5 * (y_top + y_bot),
@@ -314,8 +314,10 @@ def build_extdata_site_trajectories() -> Path:
         ha="right",
         fontsize=FS,
     )
-    fig.text(0.31, 0.955, "a  Summer", fontsize=FS_TITLE, fontweight="bold", ha="center", va="bottom")
-    fig.text(0.77, 0.955, "b  Winter", fontsize=FS_TITLE, fontweight="bold", ha="center", va="bottom")
+    col0 = axes[0, 0].get_position()
+    col1 = axes[0, 1].get_position()
+    fig.text(col0.x0, 0.955, "a  Summer", fontsize=FS_TITLE, fontweight="bold", ha="left", va="bottom")
+    fig.text(col1.x0, 0.955, "b  Winter", fontsize=FS_TITLE, fontweight="bold", ha="left", va="bottom")
     fig.legend(
         handles=[
             Line2D([0], [0], color="0.2", lw=1.2, ls="-", label=FULL),

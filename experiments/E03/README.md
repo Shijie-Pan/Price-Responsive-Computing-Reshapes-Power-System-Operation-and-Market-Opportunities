@@ -1,14 +1,30 @@
-# E03 — Fig. 3 and Supplementary Fig. 12
+# E03 — Fig. 3, Supplementary Figs. 3, 5–6
 
 Job-level schedules for six operators and eleven Texas sites. `baseline` is price-independent. `reallocation_slack_termination` is price-responsive. The solve covers 7 days plus 24 hours (192 h). The figures and cost metrics use the first 168 h.
 
-`model.py` is the CPU allocation model. `config/texas7_operators.json` is the site list, capacity, PUE, and trace window. `manifest.json` names the power files used by the figures. Redraw from those files:
+`model.py` is the CPU allocation model. `config/texas7_operators.json` is the site list, capacity, PUE, and trace window. `manifest.json` names the power files used by the figures.
 
 ```text
 python experiments/E03/plot.py
 ```
 
-That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png`.
+That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png` (Supplementary Fig. 6).
+
+Service-condition costs (price-independent, 95% + 24 h, and 100% with no extension):
+
+```text
+python experiments/E03/plot_service_condition.py
+```
+
+That writes `figures/ExtData_Fig3_service_condition_cost.png` (Supplementary Fig. 5).
+
+Texas campus map:
+
+```text
+python experiments/E03/plot_campus_map.py
+```
+
+That writes `figures/ExtData_Fig3_texas_campus_map.png` (Supplementary Fig. 3).
 
 To solve again, two local inputs are required.
 

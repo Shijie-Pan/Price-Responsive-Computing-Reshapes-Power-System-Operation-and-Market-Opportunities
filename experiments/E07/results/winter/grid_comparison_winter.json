@@ -1819,7 +1819,7 @@
       "snapshot_idx": 43,
       "snapshot": "(2030, Timestamp('2030-01-02 19:00:00'))",
       "scenario": "FULL_JOB",
-      "power_csv": "experiments/E08/results/winter/power_full_job_winter.csv",
+      "power_csv": "experiments/E07/results/winter/power_full_job_winter.csv",
       "grid_cost_change_vs_no_dc": 5698529517.428467
     },
     "AGG_ENERGY": {
@@ -2737,7 +2737,7 @@
       "snapshot_idx": 25,
       "snapshot": "(2030, Timestamp('2030-01-02 01:00:00'))",
       "scenario": "AGG_ENERGY",
-      "power_csv": "experiments/E08/results/winter/power_agg_energy_winter.csv",
+      "power_csv": "experiments/E07/results/winter/power_agg_energy_winter.csv",
       "grid_cost_change_vs_no_dc": 5993261869.857788,
       "grid_cost_change_vs_full_job": 294732352.4293213
     },
@@ -3656,7 +3656,7 @@
       "snapshot_idx": 43,
       "snapshot": "(2030, Timestamp('2030-01-02 19:00:00'))",
       "scenario": "AGG_CONT",
-      "power_csv": "experiments/E08/results/winter/power_agg_cont_winter.csv",
+      "power_csv": "experiments/E07/results/winter/power_agg_cont_winter.csv",
       "grid_cost_change_vs_no_dc": 1445304581.673462,
       "grid_cost_change_vs_full_job": -4253224935.755005
     },
@@ -4575,7 +4575,7 @@
       "snapshot_idx": 25,
       "snapshot": "(2030, Timestamp('2030-01-02 01:00:00'))",
       "scenario": "AGG_POOL",
-      "power_csv": "experiments/E08/results/winter/power_agg_pool_winter.csv",
+      "power_csv": "experiments/E07/results/winter/power_agg_pool_winter.csv",
       "grid_cost_change_vs_no_dc": 6028731997.047974,
       "grid_cost_change_vs_full_job": 330202479.61950684
     }

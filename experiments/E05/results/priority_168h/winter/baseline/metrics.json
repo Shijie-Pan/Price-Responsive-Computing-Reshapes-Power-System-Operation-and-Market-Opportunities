@@ -29,7 +29,7 @@
   "eval_length": 168,
   "total_dc_mwh": 2864335.144,
   "campus_mean_abs_delta_lmp": 3.435,
-  "power_csv": "experiments/E08/merged_power/power_merged_baseline_winter.csv",
+  "power_csv": "experiments/E07/merged_power/power_merged_baseline_winter.csv",
   "artifacts": {
     "bus_lmp_hourly": "experiments/E05/results/priority_168h/winter/baseline/bus_lmp_hourly.csv",
     "site_lmp_hourly": "experiments/E05/results/priority_168h/winter/baseline/site_lmp_hourly.csv",

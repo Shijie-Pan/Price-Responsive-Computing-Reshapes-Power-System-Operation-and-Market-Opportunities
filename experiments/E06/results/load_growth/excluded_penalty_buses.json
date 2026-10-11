@@ -1,0 +1,11 @@
+{
+  "penalty_usd_per_mwh": 100000.0,
+  "tolerance": 0.01,
+  "n_buses": 3,
+  "buses": [
+    "p119",
+    "p124",
+    "p35"
+  ],
+  "rule": "Union of buses whose nodal LMP reaches the penalty within tolerance in any hour of any stage of either scenario."
+}

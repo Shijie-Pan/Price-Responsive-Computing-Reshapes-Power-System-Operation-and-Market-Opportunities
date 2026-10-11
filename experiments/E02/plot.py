@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Fig. 2 and Supplementary Figs. 9 and 10."""
+"""Fig. 2 and Supplementary Figs. 1–2."""
 
 import csv
 import json

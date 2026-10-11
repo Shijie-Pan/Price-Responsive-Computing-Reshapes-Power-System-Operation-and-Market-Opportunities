@@ -25,7 +25,7 @@ SEASONS: dict[str, dict] = {
         "label": "2026-07",
         "hours": 744,
     },
-    # Full-year window for Fig1 robustness / ExtData (keeps summer/winter month caches intact).
+    # Full-year window used by annual payback panels; summer/winter month caches stay separate.
     "annual": {
         "start_date": date(2025, 8, 1),
         "end_date": date(2026, 7, 31),

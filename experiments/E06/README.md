@@ -1,4 +1,4 @@
-# E06 — Fig. 6
+# E06 — Fig. 6, Supplementary Figs. 10–11
 
 A 1 MW, 4 MWh battery at each bus. Round-trip efficiency is 0.9. The state of charge starts and ends at 2 MWh. Charge and discharge do not occur in the same hour. The battery takes the 168 h price as given.
 
@@ -21,7 +21,7 @@ python experiments/E06/plot.py
 
 This writes `figures/Fig6_battery_arbitrage.png`. The weekly table is not a substitute for the payback panel: the table uses model duals, and the payback panel uses the observed annual prices.
 
-## Supplementary pumped storage
+## Pumped storage (Supplementary Fig. 11)
 
 A separate 1 MW, 10 MWh plant uses the same price files. Round-trip efficiency is 80%. Installation cost is 3,706 USD/kW in 2021 dollars, the median 10-hour closed-loop class in the 2025 Electricity ATB. The deposited weekly values and observed-price payback are:
 
@@ -30,10 +30,18 @@ experiments/E06/results/summer_hydro_vs_price_independent.csv
 experiments/E06/results/summer_hydro_observed_payback.json
 ```
 
-Redraw without resolving the 134 buses:
-
 ```text
 python experiments/E06/plot_hydro.py
 ```
 
 This writes `figures/ExtData_Fig6_hydro_arbitrage.png`. It does not compare the plant with the battery.
+
+## Load growth (Supplementary Fig. 10)
+
+Ordinary low-price siting versus fixed-profile data-center scaling. Buses that hit the 100000 $/MWh penalty in any stage are excluded from the deposited fixed sample.
+
+```text
+python experiments/E06/plot_load_growth.py
+```
+
+This writes `figures/ExtData_Fig6_load_growth_battery_arbitrage.png`.

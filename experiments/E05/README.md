@@ -1,12 +1,28 @@
-# E05 — Fig. 5 and Supplementary Fig. 13
+# E05 — Fig. 5, Supplementary Figs. 7–9
 
-Continental linear dispatch on `experiments/data/networks/usa/elec_s500_c134c.nc`. The open-loop cases are in `results/priority_168h`: `no_dc`, `baseline`, and `reallocation_slack_termination`, each for 168 h. The price-responsive column of Fig. 5 is not that open-loop case. It is the dispatch after six schedule–network–price updates, in `results/closed_loop/iter_06`. Supplementary Fig. 13 is the winter open-loop map.
-
-Redraw both figures:
+Continental linear dispatch on `experiments/data/networks/usa/elec_s500_c134c.nc`. The open-loop cases are in `results/priority_168h`: `no_dc`, `baseline`, and `reallocation_slack_termination`, each for 168 h. The price-responsive column of Fig. 5 is the dispatch after six schedule–network–price updates in `results/closed_loop/iter_06`.
 
 ```text
 python experiments/E05/plot.py
 ```
+
+That writes `figures/Fig5_endogenous_lmp_callback.png` and `figures/ExtData_Fig5_usa_endogenous_maps_winter.png` (Supplementary Fig. 8).
+
+Closed-loop iteration board from the deposited summary:
+
+```text
+python experiments/E05/plot_closed_loop.py
+```
+
+That writes `figures/ExtData_Fig5_usa_endogenous_closed_loop.png` (Supplementary Fig. 7).
+
+Expanded load-propagation board (tables in `results/load_propagation/`):
+
+```text
+python experiments/E05/plot_load_propagation.py
+```
+
+That writes `figures/ExtData_Fig5_load_propagation_full_flex.png` (Supplementary Fig. 9). The top row is the July 2025 background. The bottom row keeps the same hours after the 2030 data-center increment is scaled by 1.520461/0.607868, the 2050-to-2030 ratio for commercial data-center server electricity in EIA AEO2026 Table 5 (April 2026, Counterfactual Baseline).
 
 The site list is `config/nationwide_operators.json`. An open-loop solve that matches the deposited window is:
 
