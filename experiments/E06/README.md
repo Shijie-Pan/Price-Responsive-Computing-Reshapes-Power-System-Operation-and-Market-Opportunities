@@ -1,47 +1,39 @@
-# E06 — Fig. 6, Supplementary Figs. 10–11
+# E06 — Fig. 6, Supplementary Figs. 8–10
 
-A 1 MW, 4 MWh battery at each bus. Round-trip efficiency is 0.9. The state of charge starts and ends at 2 MWh. Charge and discharge do not occur in the same hour. The battery takes the 168 h price as given.
-
-Panels a and b compare the open-loop price-independent duals with the last price-responsive iteration. The weekly revenue and intraday range are already in `results/summer_battery_vs_price_independent.csv`.
-
-Panel c applies the same battery to observed day-ahead prices and scales the price-responsive revenue by the change in intraday range. Capital cost is 326 USD/kWh in 2022 dollars for a 4-hour system (Cole and Karmakar, NREL/TP-6A40-85332). That panel reads:
-
-```text
-experiments/data/lmp_cache/ERCOT/LZ_NORTH/winter_2026-01.json
-experiments/data/lmp_cache/ERCOT/LZ_NORTH/summer_2026-07.json
-experiments/data/lmp_cache/MISO/MICHIGAN.HUB/annual_2025-08_2026-07.json
-experiments/data/lmp_cache/CAISO/SP15/annual_2025-08_2026-07.json
-```
-
-The annual window is 1 August 2025 through 31 July 2026, 8760 hours, starting at 00:00 UTC. With those files in place:
+Continental linear dispatch on `experiments/data/networks/usa/elec_s500_c134c.nc`. Open-loop cases are in `results/priority_168h`: `no_dc`, `baseline`, and `reallocation_slack_termination` (168 h). The price-responsive column of Fig. 6 uses `results/closed_loop/iter_06` after six schedule–network–price updates.
 
 ```text
 python experiments/E06/plot.py
 ```
 
-This writes `figures/Fig6_battery_arbitrage.png`. The weekly table is not a substitute for the payback panel: the table uses model duals, and the payback panel uses the observed annual prices.
+That writes `figures/Fig6_endogenous_lmp_callback.png` and `figures/ExtData_Fig6_usa_endogenous_maps_winter.png` (Supplementary Fig. 9).
 
-## Pumped storage (Supplementary Fig. 11)
-
-A separate 1 MW, 10 MWh plant uses the same price files. Round-trip efficiency is 80%. Installation cost is 3,706 USD/kW in 2021 dollars, the median 10-hour closed-loop class in the 2025 Electricity ATB. The deposited weekly values and observed-price payback are:
+Closed-loop iteration board:
 
 ```text
-experiments/E06/results/summer_hydro_vs_price_independent.csv
-experiments/E06/results/summer_hydro_observed_payback.json
+python experiments/E06/plot_closed_loop.py
 ```
+
+That writes `figures/ExtData_Fig6_usa_endogenous_closed_loop.png` (Supplementary Fig. 8).
+
+Load-propagation board (`results/load_propagation/`):
 
 ```text
-python experiments/E06/plot_hydro.py
+python experiments/E06/plot_load_propagation.py
 ```
 
-This writes `figures/ExtData_Fig6_hydro_arbitrage.png`. It does not compare the plant with the battery.
+That writes `figures/ExtData_Fig6_load_propagation_full_flex.png` (Supplementary Fig. 10). The top row is the July 2025 background. The bottom row uses the same hours after scaling the 2030 data-center increment by 1.520461/0.607868 (EIA AEO2026 Table 5, April 2026, Counterfactual Baseline, 2050-to-2030 ratio for commercial data-center server electricity).
 
-## Load growth (Supplementary Fig. 10)
-
-Ordinary low-price siting versus fixed-profile data-center scaling. Buses that hit the 100000 $/MWh penalty in any stage are excluded from the deposited fixed sample.
+Site list: `config/nationwide_operators.json`. Open-loop solve matching the deposited window:
 
 ```text
-python experiments/E06/plot_load_growth.py
+python experiments/E06/run_lopf.py --season both --eval-length 168 --tag priority_168h
 ```
 
-This writes `figures/ExtData_Fig6_load_growth_battery_arbitrage.png`.
+One closed-loop round (summer):
+
+```text
+python experiments/E06/run_closed_loop.py export-lmp --tag priority_168h --season summer --iter 0
+python experiments/E06/run_closed_loop.py e01 --season summer --iter 1
+python experiments/E06/run_closed_loop.py lopf --season summer --iter 1
+```

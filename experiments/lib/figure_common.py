@@ -151,11 +151,11 @@ _PFIXED_RATIO = 0.2
 E00_RESULTS = ROOT / "experiments/E02/results"
 E01_MASTER = ROOT / "experiments/E03/results/e01_master_summary.csv"
 E02_ROOT = ROOT / "experiments/E04"
-E03_SUMMER = ROOT / "experiments/E07/results/summer/comparison_summer.json"
-E03_WINTER = ROOT / "experiments/E07/results/winter/comparison_winter.json"
-E03_RES = ROOT / "experiments/E07/results"
-USA_E02_RESULTS = ROOT / "experiments/E05/results"
-USA_E02_CONFIG = ROOT / "experiments/E05/config"
+E03_SUMMER = ROOT / "experiments/E08/results/summer/comparison_summer.json"
+E03_WINTER = ROOT / "experiments/E08/results/winter/comparison_winter.json"
+E03_RES = ROOT / "experiments/E08/results"
+USA_E02_RESULTS = ROOT / "experiments/E06/results"
+USA_E02_CONFIG = ROOT / "experiments/E06/config"
 
 def _panel_tag(
     ax,

@@ -1,0 +1,302 @@
+{
+  "case": "texas7",
+  "season": "winter",
+  "hours": 168,
+  "sites": [
+    701,
+    702,
+    711,
+    712,
+    713,
+    731,
+    733,
+    721,
+    722,
+    741,
+    751
+  ],
+  "operators": {
+    "coreweave": [
+      701,
+      702
+    ],
+    "oracle": [
+      711,
+      712,
+      713
+    ],
+    "google": [
+      731,
+      733
+    ],
+    "meta": [
+      721,
+      722
+    ],
+    "microsoft": [
+      741
+    ],
+    "amazon": [
+      751
+    ]
+  },
+  "full_job_scenario": "reallocation_slack_termination",
+  "envelope": {
+    "p_min_mw": {
+      "701": 158.4,
+      "702": 70.74,
+      "711": 239.41,
+      "712": 400.4,
+      "713": 343.2,
+      "731": 57.05,
+      "733": 225.34,
+      "721": 57.75,
+      "722": 50.0,
+      "741": 80.56,
+      "751": 360.0
+    },
+    "p_max_mw": {
+      "701": 792.0,
+      "702": 353.7,
+      "711": 1197.06,
+      "712": 2002.0,
+      "713": 1716.0,
+      "731": 285.27,
+      "733": 1126.72,
+      "721": 288.75,
+      "722": 250.0,
+      "741": 289.93,
+      "751": 1291.86
+    },
+    "hourly_ramp_limit": false,
+    "energy_target_mwh": {
+      "701": 97375.11,
+      "702": 37067.76,
+      "711": 139566.41,
+      "712": 213012.8,
+      "713": 167481.6,
+      "731": 39100.44,
+      "733": 121631.12,
+      "721": 23013.47,
+      "722": 19552.58,
+      "741": 40070.76,
+      "751": 166894.45
+    },
+    "operator_energy_mwh": {
+      "coreweave": 134442.87,
+      "oracle": 520060.81,
+      "google": 160731.56,
+      "meta": 42566.05,
+      "microsoft": 40070.76,
+      "amazon": 166894.45
+    }
+  },
+  "models": {
+    "AGG_CONT": {
+      "model": "AGG_CONT",
+      "energy_cost_usd": 5797490.74,
+      "total_energy_mwh": 386152.23,
+      "site_energy_mwh": {
+        "701": 32947.2,
+        "702": 11884.32,
+        "711": 40221.22,
+        "712": 73673.6,
+        "713": 68640.0,
+        "731": 10269.72,
+        "733": 46871.55,
+        "721": 9702.0,
+        "722": 8400.0,
+        "741": 13743.99,
+        "751": 69798.63
+      },
+      "peak_total_mw": 5245.4792,
+      "peak_site_mw": 2002.0,
+      "max_ramp_mw": 1601.6,
+      "sync_coefficient": 0.7047,
+      "peak_hour_spread_h": 49.62,
+      "rmse_vs_full_job_mw": 588.077,
+      "energy_cost_error_pct": -60.239,
+      "peak_total_error_pct": -43.806,
+      "max_ramp_error_pct": 0.0,
+      "solver_status": "optimal",
+      "objective_usd": 5797490.7383629,
+      "energy_mode": "none",
+      "hourly_ramp_limit": false,
+      "runtime_seconds": 0.04
+    },
+    "AGG_ENERGY": {
+      "model": "AGG_ENERGY",
+      "energy_cost_usd": 13868161.97,
+      "total_energy_mwh": 1064766.51,
+      "site_energy_mwh": {
+        "701": 97375.11,
+        "702": 37067.76,
+        "711": 139566.41,
+        "712": 213012.8,
+        "713": 167481.6,
+        "731": 39100.44,
+        "733": 121631.12,
+        "721": 23013.47,
+        "722": 19552.58,
+        "741": 40070.76,
+        "751": 166894.45
+      },
+      "peak_total_mw": 9593.296,
+      "peak_site_mw": 2002.0,
+      "max_ramp_mw": 1601.6,
+      "sync_coefficient": 0.6198,
+      "peak_hour_spread_h": 5.52,
+      "rmse_vs_full_job_mw": 155.2237,
+      "energy_cost_error_pct": -4.887,
+      "peak_total_error_pct": 2.771,
+      "max_ramp_error_pct": 0.0,
+      "solver_status": "optimal",
+      "objective_usd": 13868161.972139604,
+      "energy_mode": "site",
+      "hourly_ramp_limit": false,
+      "runtime_seconds": 0.029
+    },
+    "AGG_POOL": {
+      "model": "AGG_POOL",
+      "energy_cost_usd": 13806457.77,
+      "total_energy_mwh": 1064766.51,
+      "site_energy_mwh": {
+        "701": 96940.8,
+        "702": 37502.07,
+        "711": 123536.59,
+        "712": 215314.62,
+        "713": 181209.6,
+        "731": 29130.66,
+        "733": 131600.9,
+        "721": 22166.05,
+        "722": 20400.0,
+        "741": 40070.76,
+        "751": 166894.45
+      },
+      "peak_total_mw": 9593.296,
+      "peak_site_mw": 2002.0,
+      "max_ramp_mw": 1601.6,
+      "sync_coefficient": 0.6807,
+      "peak_hour_spread_h": 4.1,
+      "rmse_vs_full_job_mw": 206.3409,
+      "energy_cost_error_pct": -5.31,
+      "peak_total_error_pct": 2.771,
+      "max_ramp_error_pct": 0.0,
+      "solver_status": "optimal",
+      "objective_usd": 13806457.77277287,
+      "energy_mode": "operator",
+      "hourly_ramp_limit": false,
+      "runtime_seconds": 0.024
+    },
+    "FULL_JOB": {
+      "model": "FULL_JOB",
+      "energy_cost_usd": 14580701.98,
+      "total_energy_mwh": 1064766.51,
+      "site_energy_mwh": {
+        "701": 97375.11,
+        "702": 37067.76,
+        "711": 139566.41,
+        "712": 213012.8,
+        "713": 167481.6,
+        "731": 39100.44,
+        "733": 121631.12,
+        "721": 23013.47,
+        "722": 19552.58,
+        "741": 40070.76,
+        "751": 166894.45
+      },
+      "peak_total_mw": 9334.6589,
+      "peak_site_mw": 2002.0,
+      "max_ramp_mw": 1601.6,
+      "sync_coefficient": 0.5563,
+      "peak_hour_spread_h": 43.95,
+      "rmse_vs_full_job_mw": 0.0,
+      "energy_cost_error_pct": 0.0,
+      "peak_total_error_pct": -0.0,
+      "max_ramp_error_pct": 0.0,
+      "source_csv": "experiments/E08/merged_power/power_merged_reallocation_slack_termination_winter.csv"
+    },
+    "FCFS": {
+      "model": "FCFS",
+      "energy_cost_usd": 19205775.95,
+      "total_energy_mwh": 1108611.25,
+      "site_energy_mwh": {
+        "701": 96860.47,
+        "702": 43169.0,
+        "711": 131764.87,
+        "712": 221022.04,
+        "713": 189097.27,
+        "731": 33827.21,
+        "733": 134472.83,
+        "721": 23564.22,
+        "722": 20317.11,
+        "741": 41467.4,
+        "751": 173048.83
+      },
+      "peak_total_mw": 7182.0547,
+      "peak_site_mw": 1520.898,
+      "max_ramp_mw": 187.8381,
+      "sync_coefficient": 0.236,
+      "peak_hour_spread_h": 44.63,
+      "rmse_vs_full_job_mw": 379.5229,
+      "energy_cost_error_pct": 31.721,
+      "peak_total_error_pct": -23.06,
+      "max_ramp_error_pct": -88.272,
+      "source_csv": "experiments/E08/merged_power/power_merged_baseline_winter.csv"
+    },
+    "FIXED_DC": {
+      "model": "FIXED_DC",
+      "energy_cost_usd": 18512429.87,
+      "total_energy_mwh": 1064766.51,
+      "site_energy_mwh": {
+        "701": 97375.11,
+        "702": 37067.76,
+        "711": 139566.41,
+        "712": 213012.8,
+        "713": 167481.6,
+        "731": 39100.44,
+        "733": 121631.12,
+        "721": 23013.47,
+        "722": 19552.58,
+        "741": 40070.76,
+        "751": 166894.45
+      },
+      "peak_total_mw": 6337.8959,
+      "peak_site_mw": 1267.9333,
+      "max_ramp_mw": 0.0,
+      "sync_coefficient": 1.0,
+      "peak_hour_spread_h": 0.0,
+      "rmse_vs_full_job_mw": 380.0322,
+      "energy_cost_error_pct": 26.965,
+      "peak_total_error_pct": -32.104,
+      "max_ramp_error_pct": -100.0
+    }
+  },
+  "model_definitions": {
+    "FULL_JOB": "Integer x[j,s,t]: tasks have site affinity, windows, CPU granularity; power P[s,t]=f(sum x) is piecewise and not freely shiftable.",
+    "AGG_CONT": "Continuous P[s,t] in [P_min,P_max] with no hourly ramp limit; optimizes LMP cost without job identity \u2014 assumes idle\u2013busy load can move smoothly in time and space.",
+    "AGG_ENERGY": "AGG_CONT plus per-site total MWh matched to FULL_JOB \u2014 same workload energy but still continuous/deferrable; ignores task size and scheduling resolution.",
+    "AGG_POOL": "AGG_CONT plus per-operator pooled MWh (sites within operator can trade energy) \u2014 even more optimistic cross-site flexibility than job-level migration allows.",
+    "FCFS": "E01 baseline portfolio; no reallocation/slack/termination.",
+    "FIXED_DC": "168 h flat load at site mean \u2014 no temporal flexibility."
+  },
+  "necessity_summary": {
+    "full_job_energy_cost_usd": 14580701.98,
+    "agg_cont": {
+      "cost_error_pct": -60.239,
+      "peak_error_pct": -43.806,
+      "rmse_mw": 588.077
+    },
+    "agg_energy": {
+      "cost_error_pct": -4.887,
+      "peak_error_pct": 2.771,
+      "rmse_mw": 155.2237
+    },
+    "agg_pool": {
+      "cost_error_pct": -5.31,
+      "peak_error_pct": 2.771,
+      "rmse_mw": 206.3409
+    },
+    "interpretation": "Aggregate models optimize continuous site power under LMP, assuming idle\u2013busy load can shift smoothly in time and across sites. Even with matched energy (AGG_ENERGY per site, AGG_POOL per operator), RMSE / peak / ramp vs FULL_JOB show that job windows, discrete CPU allocation, and task-site affinity make the implementable flexibility set much smaller than aggregate models suggest."
+  }
+}

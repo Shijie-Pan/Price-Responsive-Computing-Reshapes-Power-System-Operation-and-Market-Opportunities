@@ -1,4 +1,4 @@
-# E03 — Fig. 3, Supplementary Figs. 3, 5–6
+# E03 — Fig. 3, Supplementary Figs. 3–5
 
 Job-level schedules for six operators and eleven Texas sites. `baseline` is price-independent. `reallocation_slack_termination` is price-responsive. The solve covers 7 days plus 24 hours (192 h). The figures and cost metrics use the first 168 h.
 
@@ -8,7 +8,7 @@ Job-level schedules for six operators and eleven Texas sites. `baseline` is pric
 python experiments/E03/plot.py
 ```
 
-That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png` (Supplementary Fig. 6).
+That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png` (Supplementary Fig. 5).
 
 Service-condition costs (price-independent, 95% + 24 h, and 100% with no extension):
 
@@ -16,7 +16,7 @@ Service-condition costs (price-independent, 95% + 24 h, and 100% with no extensi
 python experiments/E03/plot_service_condition.py
 ```
 
-That writes `figures/ExtData_Fig3_service_condition_cost.png` (Supplementary Fig. 5).
+That writes `figures/ExtData_Fig3_service_condition_cost.png` (Supplementary Fig. 4).
 
 Texas campus map:
 

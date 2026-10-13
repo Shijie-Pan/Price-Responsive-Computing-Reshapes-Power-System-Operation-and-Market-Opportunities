@@ -24,7 +24,7 @@ from experiments.lib.texas_config import (  # noqa: E402
 from experiments.lib.scenarios import E01_SCENARIOS  # noqa: E402
 
 E01_ROOT = TEXAS_ROOT / "results"
-DEFAULT_OUT = ROOT / "experiments" / "E07" / "merged_power"
+DEFAULT_OUT = ROOT / "experiments" / "E08" / "merged_power"
 
 
 def _site_ids_by_operator(cfg: dict) -> dict[str, list[int]]:

@@ -1,23 +1,21 @@
-# E07 — Fig. 7
+# E07 — Fig. 7, Supplementary Figs. 11–12
 
-Comparison of the job-level schedule with three aggregate schedules on the same eleven Texas sites and 168 h: site energy (`AGG_ENERGY`), operator energy (`AGG_POOL`), and a continuous envelope (`AGG_CONT`). `config/comparison.yaml` sets the floor at 10 MW and the cap at 2200 MW. The formulation is `experiments/lib/solve/aggregate/scheduler.py`. `model.py` calls that formulation.
-
-The deposited power series and `results/comparison_summary.json` are the figure inputs. Expenditure is price times facility power over 168 h. On these series, power stays at or above facility idle, so that product is the stored `energy_cost_usd`. Peak is the fleet peak. Ramp and interquartile range are for Amazon Pecos (site 751).
-
-Redraw:
+Battery and hydropower arbitrage under continental summer prices from E06, plus ordinary-load versus data-center growth comparisons.
 
 ```text
 python experiments/E07/plot.py
 ```
 
-That writes `figures/Fig7_aggregate_model_error.png`.
-
-If the site price files from E03 are present, the expenditure bars are computed from them. If they are absent, the bars use the stored costs.
-
-Solving again replaces `results/`:
+That writes `figures/Fig7_battery_arbitrage.png`.
 
 ```text
-python experiments/E07/run_comparison.py --season both
+python experiments/E07/plot_hydro.py
 ```
 
-`merged_power/` is the operator-level input used by the Texas network in E04, not a separate figure.
+That writes `figures/ExtData_Fig7_hydro_arbitrage.png` (Supplementary Fig. 11).
+
+```text
+python experiments/E07/plot_load_growth.py
+```
+
+That writes `figures/ExtData_Fig7_load_growth_battery_arbitrage.png` (Supplementary Fig. 12).

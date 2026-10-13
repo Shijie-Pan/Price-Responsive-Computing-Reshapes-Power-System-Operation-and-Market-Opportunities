@@ -63,16 +63,16 @@ from experiments.lib.figure_style import (  # noqa: E402
     MAP_WSPACE,
 )
 
-MERGED = ROOT / "experiments/E05/results/load_propagation"
+MERGED = ROOT / "experiments/E06/results/load_propagation"
 NATIONWIDE_CFG = ROOT / "experiments/E03/config/texas7_operators.json"
 DATA = ROOT / "experiments/data/eia930"
 STATE_DEMAND = DATA / "out_ferc714__hourly_estimated_state_demand.parquet"
 BA_OPS = DATA / "core_eia930__hourly_operations.parquet"
 BA_CODES = DATA / "core_eia__codes_balancing_authorities.parquet"
 PLANTS = DATA / "out_eia__yearly_plants.parquet"
-OUT_RESULTS = ROOT / "experiments/E05/results/load_propagation"
+OUT_RESULTS = ROOT / "experiments/E06/results/load_propagation"
 OUT_FIG1 = ROOT / "experiments/E01/figures"
-OUT_EXTDATA5 = ROOT / "experiments/E05/figures"
+OUT_EXTDATA6 = ROOT / "experiments/E06/figures"
 
 DEMAND_YEAR = 2025
 # Inclusive UTC month windows (hour-of-day mean over the full month).
@@ -760,10 +760,10 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
     cb.ax.tick_params(labelsize=MAP_FS_TICK, length=1.0, pad=1.0)
 
     if only == "full_flex" and season == "summer":
-        out = OUT_EXTDATA5 / "ExtData_Fig5_load_propagation_full_flex.png"
+        out = OUT_EXTDATA6 / "ExtData_Fig6_load_propagation_full_flex.png"
     else:
         suffix = "_full_flex" if only == "full_flex" else "_summary"
-        out = OUT_EXTDATA5 / f"ExtData_Fig_usa_load_propagation_{season}{suffix}.png"
+        out = OUT_EXTDATA6 / f"ExtData_Fig_usa_load_propagation_{season}{suffix}.png"
     out.parent.mkdir(parents=True, exist_ok=True)
     path = save_figure(fig, out, pad_inches=0.08, bbox_inches="tight")
     print(

@@ -32,7 +32,7 @@ NETWORKS: dict[str, Path] = {
 OUT_DIRS: dict[str, Path] = {
     "texas_c": ROOT / "experiments" / "E04",
     "texas": ROOT / "experiments" / "E04",
-    "usa": ROOT / "experiments" / "E05",
+    "usa": ROOT / "experiments" / "E06",
 }
 
 # dc_geo_sites.json key for DC coordinates

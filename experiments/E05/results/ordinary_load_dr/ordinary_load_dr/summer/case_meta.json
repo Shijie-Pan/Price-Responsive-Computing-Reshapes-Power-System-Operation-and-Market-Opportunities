@@ -1,0 +1,59 @@
+{
+  "grid": "texas_ordinary_dr_illustrative",
+  "case": "ordinary_load_dr",
+  "season": "summer",
+  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
+  "eval_start": 0,
+  "eval_length": 168,
+  "dc_injection": false,
+  "ordinary_load_dr": true,
+  "dr": {
+    "flex_share": 0.25,
+    "congestion_flex_share": 0.5,
+    "top_n_buses": null,
+    "max_hours": 8.0,
+    "excluded_dc_buses": [
+      "p480 0",
+      "p600 24",
+      "p610 12",
+      "p610 40",
+      "p630 218",
+      "p630 246",
+      "p630 305",
+      "p630 443",
+      "p630 484",
+      "p630 5",
+      "p650 67"
+    ],
+    "attachment": {
+      "n_buses": 1114,
+      "n_buses_congestion_boosted": 156,
+      "total_p_nom_mw": 14738.727725,
+      "total_energy_mwh": 117909.8218,
+      "mean_flex_share": 0.2850089766606822,
+      "system_peak_sum_mw": 55158.0741,
+      "p_nom_share_of_peak_sum": 0.2672088894597573
+    },
+    "dispatch": {
+      "n_units": 1114,
+      "dispatch_mwh": 417247.68509317405,
+      "store_mwh": 417247.6690846491,
+      "net_mwh": 0.01600852484717792,
+      "max_abs_mw": 78.23411751585438,
+      "peak_system_discharge_mw": 5997.843801176005,
+      "peak_system_charge_mw": 6373.385693689001
+    }
+  },
+  "solver_status": "ok",
+  "objective_usd": 60008626.501075745,
+  "runtime_seconds": 4537.715936899185,
+  "solver_options": {
+    "Method": 2,
+    "Crossover": 0
+  },
+  "finished_utc": "2026-10-12T18:08:25.907202+00:00",
+  "pypsa_opf_note": "DR StorageUnits enter n.optimize with existing generators, lines, and batteries. prepare_for_lopf is unchanged. Gurobi Method=2, Crossover=0.",
+  "congested_line_hours": 0,
+  "mean_n_congested_lines": 0.0,
+  "congestion_definition": "AC line |p0| / s_nom >= 100% - 1e-9; links are not included in this count"
+}

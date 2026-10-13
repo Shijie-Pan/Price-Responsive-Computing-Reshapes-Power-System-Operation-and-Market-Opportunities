@@ -1,0 +1,167 @@
+{
+  "grid": "texas_ordinary_dr_illustrative",
+  "case": "dc_pi_plus_dr",
+  "label": "Price-independent + demand response",
+  "season": "summer",
+  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
+  "eval_start": 0,
+  "eval_length": 168,
+  "dc_injection": true,
+  "ordinary_load_dr": true,
+  "capacity_neutral_dr": true,
+  "dc_profile": {
+    "mode": "price_independent_baseline",
+    "power_csv": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\E01\\E03_powerflow\\data\\merged_power\\power_merged_baseline_summer_2026-09-20_21-34-38.csv",
+    "source": "E03_merged_baseline"
+  },
+  "dr": {
+    "flex_share": 0.25,
+    "congestion_flex_share": 0.5,
+    "top_n_buses": null,
+    "max_hours": 8.0,
+    "excluded_dc_buses": [
+      "p480 0",
+      "p600 24",
+      "p610 12",
+      "p610 40",
+      "p630 218",
+      "p630 246",
+      "p630 305",
+      "p630 443",
+      "p630 484",
+      "p630 5",
+      "p650 67"
+    ],
+    "displacement": {
+      "capacity_key": "projected_total_mw",
+      "original_ordinary_dr_p_nom_mw": 14738.727725,
+      "dc_capacity_mw": 7741.7,
+      "displaced_ordinary_dr_mw": 7741.7,
+      "remaining_ordinary_dr_p_nom_mw": 6997.027725000001,
+      "total_dr_capacity_with_dc_mw": 14738.727725,
+      "capacity_neutral_gap_mw": 0.0,
+      "n_dc_sites": 11,
+      "n_ordinary_dr_units_remaining": 487,
+      "n_ordinary_dr_units_original": 1114,
+      "per_site": [
+        {
+          "site": "751",
+          "dc_bus": "p610 12",
+          "dc_capacity_mw": 1500.0,
+          "displaced_ordinary_dr_mw": 1500.0,
+          "n_ordinary_dr_units_touched": 165,
+          "n_units": 165
+        },
+        {
+          "site": "712",
+          "dc_bus": "p630 246",
+          "dc_capacity_mw": 1400.0,
+          "displaced_ordinary_dr_mw": 1400.0,
+          "n_ordinary_dr_units_touched": 131,
+          "n_units": 131
+        },
+        {
+          "site": "713",
+          "dc_bus": "p630 218",
+          "dc_capacity_mw": 1200.0,
+          "displaced_ordinary_dr_mw": 1200.0,
+          "n_ordinary_dr_units_touched": 111,
+          "n_units": 111
+        },
+        {
+          "site": "733",
+          "dc_bus": "p480 0",
+          "dc_capacity_mw": 1006.0,
+          "displaced_ordinary_dr_mw": 1006.0,
+          "n_ordinary_dr_units_touched": 60,
+          "n_units": 60
+        },
+        {
+          "site": "711",
+          "dc_bus": "p610 40",
+          "dc_capacity_mw": 843.0,
+          "displaced_ordinary_dr_mw": 843.0,
+          "n_ordinary_dr_units_touched": 70,
+          "n_units": 70
+        },
+        {
+          "site": "701",
+          "dc_bus": "p600 24",
+          "dc_capacity_mw": 528.0,
+          "displaced_ordinary_dr_mw": 528.0,
+          "n_ordinary_dr_units_touched": 26,
+          "n_units": 26
+        },
+        {
+          "site": "741",
+          "dc_bus": "p650 67",
+          "dc_capacity_mw": 314.7,
+          "displaced_ordinary_dr_mw": 314.7,
+          "n_ordinary_dr_units_touched": 20,
+          "n_units": 20
+        },
+        {
+          "site": "702",
+          "dc_bus": "p630 443",
+          "dc_capacity_mw": 262.0,
+          "displaced_ordinary_dr_mw": 262.0,
+          "n_ordinary_dr_units_touched": 14,
+          "n_units": 14
+        },
+        {
+          "site": "731",
+          "dc_bus": "p630 305",
+          "dc_capacity_mw": 257.0,
+          "displaced_ordinary_dr_mw": 257.0,
+          "n_ordinary_dr_units_touched": 15,
+          "n_units": 15
+        },
+        {
+          "site": "721",
+          "dc_bus": "p630 5",
+          "dc_capacity_mw": 231.0,
+          "displaced_ordinary_dr_mw": 231.0,
+          "n_ordinary_dr_units_touched": 15,
+          "n_units": 15
+        },
+        {
+          "site": "722",
+          "dc_bus": "p630 484",
+          "dc_capacity_mw": 200.0,
+          "displaced_ordinary_dr_mw": 200.0,
+          "n_ordinary_dr_units_touched": 11,
+          "n_units": 11
+        }
+      ]
+    },
+    "attachment": {
+      "n_buses": 487,
+      "n_buses_congestion_boosted": 73,
+      "total_p_nom_mw": 6997.027725000001,
+      "total_energy_mwh": 55976.22180000001,
+      "mean_flex_share": 0.2874743326488706,
+      "system_peak_sum_mw": 54692.9112,
+      "p_nom_share_of_peak_sum": 0.127932991158825
+    },
+    "dispatch": {
+      "n_units": 487,
+      "dispatch_mwh": 263099.0350381129,
+      "store_mwh": 263099.0242714444,
+      "net_mwh": 0.01076666846569587,
+      "max_abs_mw": 79.51240835593411,
+      "peak_system_discharge_mw": 3552.295049063984,
+      "peak_system_charge_mw": 4260.303746829979
+    }
+  },
+  "solver_status": "ok",
+  "objective_usd": 6613706775.026674,
+  "runtime_seconds": 1602.138127565384,
+  "solver_options": {
+    "Method": 2,
+    "Crossover": 0
+  },
+  "finished_utc": "2026-10-12T20:41:19.602935+00:00",
+  "congested_line_hours": 0,
+  "mean_n_congested_lines": 0.0,
+  "congestion_definition": "AC line |p0| / s_nom >= 100% - 1e-9; links are not included in this count"
+}

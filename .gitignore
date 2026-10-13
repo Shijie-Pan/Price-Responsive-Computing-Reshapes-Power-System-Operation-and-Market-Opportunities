@@ -1,5 +1,44 @@
 __pycache__/
 *.py[cod]
+*$py.class
 *.log
 *.tmp
+*.temp
+*.bak
 .DS_Store
+.ipynb_checkpoints/
+.env
+.env.*
+.env.local
+*.pem
+*.key
+*credentials*
+*secret*
+gurobi.lic
+*.lp
+*.mps
+gurobi.log
+
+# Local helper scripts (not part of the deposit)
+_reorganize_fig_numbering.py
+_fix_rcl.py
+
+# Copyrighted / licensed inputs obtained locally. Do not commit.
+experiments/data/sources/job_info_df.csv
+experiments/data/sources/job_info_df_A10.csv
+experiments/data/jobs/
+experiments/data/lmp_cache/
+experiments/E03/data/lmp/
+
+# Above the 100 MB GitHub file limit. Keep the local copy off-remote.
+experiments/data/eia930/out_ferc714__hourly_estimated_state_demand.parquet
+
+# Solver / checkpoint / cache
+*.ckpt
+*.pth
+*.pt
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+validation/

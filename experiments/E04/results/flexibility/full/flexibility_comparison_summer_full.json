@@ -334,7 +334,7 @@
       "week_critical_snapshot": "(np.int32(2030), Timestamp('2030-01-01 00:00:00'))",
       "pf_backend_voltage": null,
       "scenario": "baseline",
-      "power_csv": "experiments/E07/merged_power/power_merged_baseline_summer.csv",
+      "power_csv": "experiments/E08/merged_power/power_merged_baseline_summer.csv",
       "delta_peak_loading_pct_vs_no_dc": 0.0
     },
     "reallocation_slack_termination": {
@@ -487,7 +487,7 @@
       "map_snapshot_label": "2030-07-01 10:00",
       "week_critical_snapshot": "(2030, Timestamp('2030-01-01 00:00:00'))",
       "scenario": "reallocation_slack_termination",
-      "power_csv": "experiments/E07/merged_power/power_merged_reallocation_slack_termination_summer.csv",
+      "power_csv": "experiments/E08/merged_power/power_merged_reallocation_slack_termination_summer.csv",
       "max_voltage_deviation": 0.0,
       "voltage_violation_count": 0,
       "max_voltage_deviation_pu": 0.0,

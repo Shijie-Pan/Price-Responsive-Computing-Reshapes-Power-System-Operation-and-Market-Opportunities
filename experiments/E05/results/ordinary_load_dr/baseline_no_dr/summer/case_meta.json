@@ -1,0 +1,7 @@
+{
+  "case": "baseline_no_dr",
+  "season": "summer",
+  "reused_from": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\revision_experiments_20261008_001608\\results\\networks\\texas\\no_dc\\summer",
+  "note": "Identical to texas no_dc; no ordinary-load DR; no DC injection.",
+  "finished_utc": "2026-10-12T12:47:42.593795+00:00"
+}

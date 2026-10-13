@@ -1,0 +1,21 @@
+# Texas actual — 6 operators, 11 sites. Parameters match the deposited comparison.
+
+hours: 168
+eval_start: 0
+seasons: [winter, summer]
+
+site_ids: [701, 702, 711, 712, 713, 731, 733, 721, 722, 741, 751]
+
+full_job_scenario: reallocation_slack_termination
+fcfs_scenario: baseline
+
+merged_power_dir: experiments/E08/merged_power
+
+use_reference_envelope: true
+p_min_floor_mw: 10.0
+p_max_cap_mw: 2200.0
+
+run_grid_lopf: true
+network_path: experiments/data/networks/texas/elec_s1250.nc
+e02_config_dir: experiments/E04/config
+solver: gurobi

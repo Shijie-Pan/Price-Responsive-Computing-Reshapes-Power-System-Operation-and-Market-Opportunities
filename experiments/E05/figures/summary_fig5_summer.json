@@ -1,0 +1,41 @@
+{
+  "season": "summer",
+  "map_hour": 61,
+  "map_utc": "UTC 13:00",
+  "binding_threshold_pct": 99.9,
+  "price_for_scheduling": "exogenous_ercot_day_ahead",
+  "eval_hours": 168,
+  "week_hours": 168,
+  "extension_hours": 0,
+  "show_dc_sites": true,
+  "congested_line_hours": {
+    "fcfs": 8266,
+    "temporal_only": 6388,
+    "spatial_only": 8119,
+    "spatiotemporal": 7833
+  },
+  "congested_line_hours_week_0_167": {
+    "fcfs": 8266,
+    "temporal_only": 6388,
+    "spatial_only": 8119,
+    "spatiotemporal": 7833
+  },
+  "congested_line_hours_extension_168_plus": {
+    "fcfs": 0,
+    "temporal_only": 0,
+    "spatial_only": 0,
+    "spatiotemporal": 0
+  },
+  "mean_congested_lines": {
+    "fcfs": 49.20238095238095,
+    "temporal_only": 38.023809523809526,
+    "spatial_only": 48.32738095238095,
+    "spatiotemporal": 46.625
+  },
+  "objective_usd": {
+    "fcfs": 6614888987.779848,
+    "temporal_only": 2160284612.2265606,
+    "spatial_only": 8516733316.409585,
+    "spatiotemporal": 8243739614.8788
+  }
+}

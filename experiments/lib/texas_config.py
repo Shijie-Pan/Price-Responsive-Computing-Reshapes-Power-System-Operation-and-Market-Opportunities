@@ -33,7 +33,7 @@ def study_e02ex_root() -> Path:
 
 def study_e03_root() -> Path:
     """Aggregate-model comparison (manuscript Fig. 7)."""
-    return REPO_ROOT / "experiments" / "E07"
+    return REPO_ROOT / "experiments" / "E08"
 
 SEASONS = ("winter", "summer")
 SEC_PER_DAY = 86400
