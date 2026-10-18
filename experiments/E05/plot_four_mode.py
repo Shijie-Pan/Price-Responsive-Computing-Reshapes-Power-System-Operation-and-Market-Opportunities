@@ -43,7 +43,7 @@ MODES = (
     {"key": "fcfs", "label": "Price-independent", "color": "#4C4C4C"},
     {"key": "temporal_only", "label": "Temporal only", "color": "#4E79A7"},
     {"key": "spatial_only", "label": "Spatial only", "color": "#F28E2B"},
-    {"key": "spatiotemporal", "label": "Spatio-temporal", "color": "#E15759"},
+    {"key": "spatiotemporal", "label": "Spatiotemporal", "color": "#E15759"},
 )
 
 
@@ -101,11 +101,15 @@ def _edges(loading: pd.DataFrame, hour: int, static: pd.DataFrame, buses: pd.Dat
 def build() -> Path:
     apply_nature_comm_style()
     frames = {m["key"]: _loading(m["key"]) for m in MODES}
-    n_hours = min(len(df) for df in frames.values())
+    n_hours = min(WEEK_HOURS, min(len(df) for df in frames.values()))
     frames = {k: df.iloc[:n_hours].copy() for k, df in frames.items()}
+    static = _line_static()
+    common_lines = sorted(
+        set(static.index).intersection(*(set(df.columns) for df in frames.values()))
+    )
+    frames = {k: df.loc[:, common_lines] for k, df in frames.items()}
     counts = {k: _counts(df) for k, df in frames.items()}
     hour = int(np.argmax(counts["spatiotemporal"]))
-    static = _line_static()
     scale = "texas"
     _, _, abs_thr, abs_label_fs = annotation_style_for(scale)
     n, dc_map, meta, dc_refs, site_colors = load_e02_geo_context(E05)
@@ -257,12 +261,35 @@ def build() -> Path:
     )
 
     OUT.mkdir(parents=True, exist_ok=True)
+    line_hours = {m["key"]: int(counts[m["key"]].sum()) for m in MODES}
+    fcfs_lh = float(line_hours["fcfs"])
+    relative_vs_fcfs = {
+        m["key"]: {
+            "delta_line_hours": int(line_hours[m["key"]] - line_hours["fcfs"]),
+            "relative_change_pct": (
+                None
+                if fcfs_lh <= 0
+                else round(100.0 * (line_hours[m["key"]] - fcfs_lh) / fcfs_lh, 4)
+            ),
+        }
+        for m in MODES
+    }
     meta_out = {
         "figure": "Fig5",
         "season": "summer",
         "map_hour": hour,
+        "map_hour_rule": "argmax congested-line count under spatiotemporal",
+        "map_hour_congested_lines": {m["key"]: int(counts[m["key"]][hour]) for m in MODES},
         "binding_threshold_pct": BINDING,
-        "eval_hours": n_hours,
+        "n_lines": len(common_lines),
+        "line_capacity_s_nom_sum_mw": float(
+            static.loc[common_lines, "s_nom"].astype(float).sum()
+        ),
+        "eval_hours": int(n_hours),
+        "week_hours": WEEK_HOURS,
+        "congested_line_hours": line_hours,
+        "relative_vs_fcfs": relative_vs_fcfs,
+        "mean_congested_lines": {m["key"]: float(counts[m["key"]].mean()) for m in MODES},
     }
     (OUT / "summary_fig5_summer.json").write_text(json.dumps(meta_out, indent=2), encoding="utf-8")
     return save_figure(fig, OUT / "Fig5_four_mode_dc_summer.png")

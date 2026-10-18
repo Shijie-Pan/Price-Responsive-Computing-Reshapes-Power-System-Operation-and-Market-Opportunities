@@ -753,7 +753,11 @@ CONGESTION_LINE_COLORS: dict[str, str] = {
 }
 
 
-def _congestion_count(df: pd.DataFrame, *, threshold: float = 100.0) -> np.ndarray:
+# Match Fig. 5 four-mode binding definition (thermal limit with 0.1 pp tolerance).
+BINDING_PCT = 99.9
+
+
+def _congestion_count(df: pd.DataFrame, *, threshold: float = BINDING_PCT) -> np.ndarray:
     return (df.to_numpy(dtype=float) >= threshold - 1e-9).sum(axis=1).astype(int)
 
 

@@ -42,6 +42,8 @@ from experiments.lib.figure_style import (  # noqa: E402
     FIG2_HSPACE,
     FIG2_LEFT,
     FIG2_LEGEND_MS,
+    FIG2_NORM_COLOR,
+    FIG2_NORM_S,
     FIG2_RIGHT,
     FIG2_TOP,
     FIG2_WSPACE,

@@ -74,6 +74,45 @@ def _fleet_power(season: str, scenario: str, hours: int = 168) -> np.ndarray:
     return total
 
 
+def _reported_energy_cost(row: dict) -> float:
+    """Dynamic on full horizon + idle on original 168 h."""
+    dyn = row.get("dynamic_cost")
+    idle = row.get("idle_cost")
+    if dyn not in (None, "") and idle not in (None, ""):
+        return float(dyn) + float(idle)
+    return float(row["energy_cost"])
+
+
+def _operator_expenditure_changes(rows: list[dict]) -> list[dict]:
+    """Total and per-delivered-vCPU expenditure change vs price-independent."""
+    records = []
+    for season in ("summer", "winter"):
+        for op in OPERATOR_ORDER:
+            by = {r["scenario"]: r for r in rows if r["operator"] == op and r["season"] == season}
+            if "baseline" not in by or "reallocation_slack_termination" not in by:
+                raise KeyError(f"Missing baseline or full row for {op} {season}")
+            base = by["baseline"]
+            full = by["reallocation_slack_termination"]
+            base_cost = _reported_energy_cost(base)
+            full_cost = _reported_energy_cost(full)
+            base_work = float(base["total_delivered_work"])
+            full_work = float(full["total_delivered_work"])
+            if min(base_cost, full_cost, base_work, full_work) <= 0:
+                raise ValueError(f"Non-positive cost or delivered work for {op} {season}")
+            records.append(
+                {
+                    "operator_id": op,
+                    "season": season,
+                    "total_expenditure_change_pct": (full_cost / base_cost - 1.0) * 100.0,
+                    "expenditure_per_delivered_vcpu_hour_change_pct": (
+                        (full_cost / full_work) / (base_cost / base_work) - 1.0
+                    )
+                    * 100.0,
+                }
+            )
+    return records
+
+
 def build_fig2() -> Path:
     apply_figure_style()
     plt.rcParams.update(
@@ -87,8 +126,10 @@ def build_fig2() -> Path:
         }
     )
     rows = _load_e01_master()
+    changes = _operator_expenditure_changes(rows)
+    by_key = {(r["operator_id"], r["season"]): r for r in changes}
     # Shorter board; flatter c/d; right pad so b/d are not flush-cut.
-    fig = plt.figure(figsize=figsize_double_col(4.15), facecolor="white")
+    fig = plt.figure(figsize=figsize_double_col(4.20), facecolor="white")
     gs = fig.add_gridspec(
         2,
         2,
@@ -97,8 +138,8 @@ def build_fig2() -> Path:
         wspace=FIG2_WSPACE,
         left=FIG2_LEFT,
         right=FIG2_RIGHT,
-        top=FIG2_TOP,
-        bottom=FIG2_BOTTOM,
+        top=0.875,
+        bottom=0.155,
     )
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1], sharey=ax_a)
@@ -107,46 +148,57 @@ def build_fig2() -> Path:
     top_axes = [ax_a, ax_b]
     bot_axes = [ax_c, ax_d]
 
+    ops = list(OPERATOR_ORDER)
+    y = np.arange(len(ops))
+    metric_handles = [
+        Line2D(
+            [0], [0], marker="o", linestyle="None",
+            markerfacecolor=COLOR_FULL, markeredgecolor=COLOR_FULL,
+            markersize=FIG2_LEGEND_MS, label="Total expenditure",
+        ),
+        Line2D(
+            [0], [0], marker="D", linestyle="None",
+            markerfacecolor="white", markeredgecolor=FIG2_NORM_COLOR, markeredgewidth=0.9,
+            markersize=FIG2_LEGEND_MS, label="Expenditure per delivered vCPU-hour",
+        ),
+    ]
     xmin = 0.0
     for col, season in enumerate(("summer", "winter")):
         ax = top_axes[col]
-        ops = list(OPERATOR_ORDER)
-        y = np.arange(len(ops))
-        left, right = [], []
-        for op in ops:
-            by = {r["scenario"]: r for r in rows if r["operator"] == op and r["season"] == season}
-            left.append(0.0)
-            right.append(
-                float(by.get("reallocation_slack_termination", {}).get("delta_energy_cost_pct_vs_baseline", 0) or 0)
-            )
+        total = [by_key[(op, season)]["total_expenditure_change_pct"] for op in ops]
+        normalized = [
+            by_key[(op, season)]["expenditure_per_delivered_vcpu_hour_change_pct"] for op in ops
+        ]
         for i in range(len(ops)):
-            ax.plot([left[i], right[i]], [y[i], y[i]], color="#8491B4", lw=1.0, zorder=1)
-            ax.scatter(left[i], y[i], color=COLOR_FCFS, s=FIG2_DOT_S, zorder=2)
-            ax.scatter(right[i], y[i], color=COLOR_FULL, s=FIG2_DOT_S, zorder=2)
-        ax.axvline(0.0, color="#CCCCCC", lw=0.5)
+            ax.plot([0.0, total[i]], [y[i], y[i]], color="#8491B4", lw=1.0, zorder=1)
+            ax.scatter(
+                normalized[i], y[i],
+                facecolors="white", edgecolors=FIG2_NORM_COLOR, linewidths=0.9,
+                marker="D", s=FIG2_NORM_S, zorder=3,
+            )
+            ax.scatter(total[i], y[i], color=COLOR_FULL, s=FIG2_DOT_S, zorder=4)
+        ax.axvline(0.0, color="#B0B0B0", lw=0.6, zorder=0)
         ax.set_yticks(y)
         if col == 0:
             ax.set_yticklabels([OPERATOR_LABELS[o] for o in ops], fontsize=FS)
         else:
             plt.setp(ax.get_yticklabels(), visible=False)
-        ax.set_xlabel(r"$\Delta$Energy cost (%)", fontsize=FS)
+        ax.set_xlabel(r"$\Delta$Electricity expenditure (%)", fontsize=FS)
         ax.tick_params(axis="both", labelsize=FS_TICK_COMPOSED)
         ax.xaxis.grid(True, color="#D0D0D0", lw=0.45, zorder=0)
         ax.set_axisbelow(True)
-        xmin = min(xmin, min(right))
-        ax.legend(
-            handles=[
-                Line2D([0], [0], marker="o", color="w", markerfacecolor=COLOR_FCFS, markersize=FIG2_LEGEND_MS, label=FCFS),
-                Line2D([0], [0], marker="o", color="w", markerfacecolor=COLOR_FULL, markersize=FIG2_LEGEND_MS, label=FULL),
-            ],
-            loc="upper left",
-            frameon=False,
-            fontsize=FS_LEGEND,
-            handletextpad=0.25,
-            borderaxespad=0.15,
-            labelspacing=0.2,
-        )
+        xmin = min(xmin, min(total), min(normalized))
         _panel_tag(ax, "ab"[col], season.capitalize())
+    fig.legend(
+        handles=metric_handles,
+        loc="upper center",
+        ncol=2,
+        frameon=False,
+        fontsize=FS_LEGEND,
+        bbox_to_anchor=(0.56, 0.978),
+        columnspacing=1.2,
+        handletextpad=0.35,
+    )
     for ax in top_axes:
         ax.set_xlim(xmin - 2.5, 1.5)
 
@@ -181,7 +233,7 @@ def build_fig2() -> Path:
         ncol=2,
         fontsize=FS_LEGEND,
         frameon=False,
-        bbox_to_anchor=(0.54, 0.01),
+        bbox_to_anchor=(0.54, 0.006),
         columnspacing=1.4,
     )
     fig.align_ylabels([ax_a, ax_c])

@@ -1,6 +1,6 @@
 # E04 — Fig. 4, Supplementary Fig. 6
 
-Texas transmission with the E03 schedules injected onto `experiments/data/networks/texas/elec_s1250.nc`. The three cases are `no_dc`, `baseline` (price-independent), and `reallocation_slack_termination` (price-responsive). The evaluation window is 168 h. Winter uses the first week stored in the network. Summer overlays the July renewable week from the profile files.
+Texas transmission with the E03 schedules injected onto `experiments/data/networks/texas/elec_s1250.nc`. The three cases are `no_dc`, `baseline` (price-independent), and `reallocation_slack_termination` (price-responsive). The evaluation window is 168 h. Binding line-hours use a 99.9% loading threshold (same definition as Fig. 5). Winter uses the first week stored in the network. Summer overlays the July renewable week from the profile files.
 
 Redraw Fig. 4 from the hourly line loadings in `results/flexibility/full/`:
 

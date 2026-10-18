@@ -191,7 +191,7 @@ def portfolios_from_hourly(
         edges = edges_from_loading_series(static_n, row)
         loadings = edges["loading_pct"] if len(edges) else None
         peak = float(loadings.max()) if loadings is not None and len(loadings) else 0.0
-        n_ov = int((loadings >= 100.0 - 1e-9).sum()) if loadings is not None else 0
+        n_ov = int((loadings >= 99.9 - 1e-9).sum()) if loadings is not None else 0
         n_near = int((loadings >= 90.0).sum()) if loadings is not None else 0
         out[key] = {
             "map_snapshot_idx": int(hour),

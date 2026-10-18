@@ -4,7 +4,7 @@
   "network_evaluation": "single_s1250_lopf_168h_week",
   "endogenous_price_loop": false,
   "mode": "spatiotemporal",
-  "label": "Spatio-temporal",
+  "label": "Spatiotemporal",
   "e01_scenario": "reallocation_slack_termination",
   "hard_constraints": {
     "enable_reallocation": true,

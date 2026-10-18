@@ -84,7 +84,7 @@ def backfill_congestion_metrics(portfolios: dict) -> None:
         if not edges:
             continue
         loadings = [float(e.get("loading_pct") or 0.0) for e in edges]
-        port["n_overloaded"] = int(sum(v >= 100.0 - 1e-9 for v in loadings))
+        port["n_overloaded"] = int(sum(v >= 99.9 - 1e-9 for v in loadings))
         port["n_lines_at_or_above_90pct"] = int(sum(v >= 90.0 for v in loadings))
         if port.get("peak_loading_pct") is None and loadings:
             port["peak_loading_pct"] = round(max(loadings), 4)

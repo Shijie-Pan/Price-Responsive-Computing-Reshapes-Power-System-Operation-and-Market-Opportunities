@@ -1,6 +1,6 @@
 # E03 — Fig. 3, Supplementary Figs. 3–5
 
-Job-level schedules for six operators and eleven Texas sites. `baseline` is price-independent. `reallocation_slack_termination` is price-responsive. The solve covers 7 days plus 24 hours (192 h). The figures and cost metrics use the first 168 h.
+Job-level schedules for six operators and eleven Texas sites. `baseline` is price-independent. `reallocation_slack_termination` is price-responsive. The solve covers 7 days plus 24 hours (192 h). Demand profiles are evaluated over the original 168 hours. Electricity expenditure includes dynamic consumption over the 192-hour scheduling horizon and idle consumption over the original 168 hours.
 
 `model.py` is the CPU allocation model. `config/texas7_operators.json` is the site list, capacity, PUE, and trace window. `manifest.json` names the power files used by the figures.
 

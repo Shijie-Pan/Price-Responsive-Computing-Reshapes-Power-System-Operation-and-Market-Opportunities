@@ -1,50 +1,47 @@
 {
+  "figure": "Fig5",
   "season": "summer",
   "map_hour": 112,
-  "map_utc": "UTC 16:00",
-  "binding_threshold_pct": {
-    "fcfs": 99.999999999,
-    "temporal_only": 99.9,
-    "spatial_only": 99.9,
-    "spatiotemporal": 99.999999999
+  "map_hour_rule": "argmax congested-line count under spatiotemporal",
+  "map_hour_congested_lines": {
+    "fcfs": 82,
+    "temporal_only": 49,
+    "spatial_only": 66,
+    "spatiotemporal": 84
   },
-  "e03_aligned_modes": [
-    "fcfs",
-    "spatiotemporal"
-  ],
-  "price_for_scheduling": "exogenous_ercot_day_ahead",
+  "binding_threshold_pct": 99.9,
+  "n_lines": 1890,
+  "line_capacity_s_nom_sum_mw": 918044.9,
   "eval_hours": 168,
   "week_hours": 168,
-  "extension_hours": 0,
-  "show_dc_sites": true,
   "congested_line_hours": {
-    "fcfs": 9596,
+    "fcfs": 9609,
     "temporal_only": 6388,
     "spatial_only": 8119,
-    "spatiotemporal": 9601
+    "spatiotemporal": 9619
   },
-  "congested_line_hours_week_0_167": {
-    "fcfs": 9596,
-    "temporal_only": 6388,
-    "spatial_only": 8119,
-    "spatiotemporal": 9601
-  },
-  "congested_line_hours_extension_168_plus": {
-    "fcfs": 0,
-    "temporal_only": 0,
-    "spatial_only": 0,
-    "spatiotemporal": 0
+  "relative_vs_fcfs": {
+    "fcfs": {
+      "delta_line_hours": 0,
+      "relative_change_pct": 0.0
+    },
+    "temporal_only": {
+      "delta_line_hours": -3221,
+      "relative_change_pct": -33.5207
+    },
+    "spatial_only": {
+      "delta_line_hours": -1490,
+      "relative_change_pct": -15.5063
+    },
+    "spatiotemporal": {
+      "delta_line_hours": 10,
+      "relative_change_pct": 0.1041
+    }
   },
   "mean_congested_lines": {
-    "fcfs": 57.11904761904762,
+    "fcfs": 57.19642857142857,
     "temporal_only": 38.023809523809526,
     "spatial_only": 48.32738095238095,
-    "spatiotemporal": 57.148809523809526
-  },
-  "objective_usd": {
-    "fcfs": 6614888987.779848,
-    "temporal_only": 2160284612.2265606,
-    "spatial_only": 8516733316.409585,
-    "spatiotemporal": 8243739614.8788
+    "spatiotemporal": 57.25595238095238
   }
 }
