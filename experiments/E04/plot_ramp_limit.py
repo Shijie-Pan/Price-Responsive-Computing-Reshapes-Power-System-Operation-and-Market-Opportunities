@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Supplementary Fig. 4: ramp-limit sensitivity (95% + 24 h)."""
+"""Supplementary Fig. 5: ramp-limit sensitivity (95% + 24 h)."""
 
 import sys
 from pathlib import Path

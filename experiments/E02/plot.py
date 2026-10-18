@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Fig. 2 and Supplementary Figs. 1–2."""
+"""Fig. 2 and Supplementary Fig. 1."""
 
 import csv
 import json
@@ -10,8 +10,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.colors import Normalize, TwoSlopeNorm
-from matplotlib.lines import Line2D
-from matplotlib.patches import FancyBboxPatch
 from matplotlib import cm as mpl_cm
 
 from experiments.lib.paths import package_root
@@ -386,171 +384,10 @@ def _build_phase_lag_board(season: str, out: Path) -> Path:
     return save_figure(fig, out)
 
 
-def build_extdata_directional_motivation() -> Path:
-    """ExtData schematic: why directional bias D is needed (not only |Δ|)."""
-    from matplotlib.patches import Patch
-
-    from experiments.E02.model import compute_spread_metrics
-    from experiments.lib.state_lmp_loader import (
-        load_state_prices,
-    )
-
-    apply_figure_style()
-    season = "summer"
-    ref = np.asarray(load_state_prices("TX", season), dtype=float)
-    cases = [
-        ("a", "IN", r"$D\approx 0$"),
-        ("b", "MD", r"$D\to +1$"),
-        ("c", "AL", r"$D\to -1$"),
-    ]
-
-    best_start = 24 * 10
-    best_score = -1.0
-    for s0 in range(0, max(1, len(ref) - 48), 12):
-        win = slice(s0, s0 + 48)
-        p = np.asarray(load_state_prices("IN", season), dtype=float)[win]
-        r = ref[win]
-        crosses = int(np.sum((p[1:] - r[1:]) * (p[:-1] - r[:-1]) < 0))
-        m = compute_spread_metrics(p, r)
-        score = crosses - 20.0 * abs(m.directional_bias_D)
-        if score > best_score:
-            best_score = score
-            best_start = s0
-    show = slice(best_start, best_start + 48)
-    ts = np.arange(48, dtype=float)
-
-    series = []
-    for letter, state, d_label in cases:
-        partner = np.asarray(load_state_prices(state, season), dtype=float)
-        m_full = compute_spread_metrics(partner, ref)
-        series.append(
-            {
-                "letter": letter,
-                "state": state,
-                "d_label": d_label,
-                "partner": partner,
-                "diff": partner - ref,
-                "m_full": m_full,
-            }
-        )
-
-    color_ref = "#3C5488"
-    color_p = "#E64B35"
-    color_pos = "#00A087"
-    color_neg = "#E64B35"
-    color_diff = "#3C5488"
-
-    fig = plt.figure(figsize=figsize_double_col(3.2), facecolor="white")
-    gs = fig.add_gridspec(
-        2,
-        3,
-        height_ratios=[1.2, 1.0],
-        hspace=0.38,
-        wspace=0.22,
-        left=0.09,
-        right=0.985,
-        top=0.90,
-        bottom=0.14,
-    )
-
-    for j, s in enumerate(series):
-        ax = fig.add_subplot(gs[0, j])
-        ax_d = fig.add_subplot(gs[1, j])
-        mf = s["m_full"]
-
-        ax.plot(ts, ref[show], color=color_ref, lw=1.0)
-        ax.plot(ts, s["partner"][show], color=color_p, lw=1.0)
-        ax.set_xlim(0, 47)
-        y0 = min(float(np.nanmin(ref[show])), float(np.nanmin(s["partner"][show]))) - 2
-        y1 = max(float(np.nanmax(ref[show])), float(np.nanmax(s["partner"][show]))) + 2
-        y1 = min(y1, float(np.nanpercentile(s["partner"][show], 98)) * 1.15 + 5)
-        ax.set_ylim(y0, y1)
-        ax.set_xticks([0, 24, 47])
-        if j == 0:
-            ax.set_ylabel("LMP ($/MWh)", fontsize=FS)
-        else:
-            ax.tick_params(labelleft=False)
-        ax.tick_params(labelsize=FS_TICK_COMPOSED, length=2.5, width=0.5)
-        ax.set_xticklabels([])
-        for spine in ("top", "right"):
-            ax.spines[spine].set_visible(False)
-        _panel_tag(
-            ax,
-            s["letter"],
-            f"{s['state']} vs TX  {s['d_label']}",
-            x=0.0,
-            y=1.02,
-            fontsize=FS_TITLE,
-        )
-
-        d = s["diff"][show]
-        y_d = max(float(np.nanmax(np.abs(d))), 1.0) * 1.08
-        ax_d.axhline(0.0, color="0.55", lw=0.5, zorder=1)
-        ax_d.fill_between(
-            ts, 0.0, d, where=(d >= 0), interpolate=True,
-            facecolor=color_pos, alpha=0.30, linewidth=0, zorder=2,
-        )
-        ax_d.fill_between(
-            ts, 0.0, d, where=(d < 0), interpolate=True,
-            facecolor=color_neg, alpha=0.30, linewidth=0, zorder=2,
-        )
-        ax_d.plot(ts, d, color=color_diff, lw=0.9, zorder=3)
-        ax_d.set_xlim(0, 47)
-        ax_d.set_ylim(-y_d, y_d)
-        ax_d.set_xticks([0, 24, 47])
-        ax_d.set_xlabel("Hour", fontsize=FS)
-        if j == 0:
-            # Avoid broken mathtext: use unicode delta, not nested $...$ with \mathrm.
-            ax_d.set_ylabel("Δp vs TX ($/MWh)", fontsize=FS)
-        else:
-            ax_d.tick_params(labelleft=False)
-        ax_d.tick_params(labelsize=FS_TICK_COMPOSED, length=2.5, width=0.5)
-        for spine in ("top", "right"):
-            ax_d.spines[spine].set_visible(False)
-
-    handles = [
-        Line2D([0], [0], color=color_ref, lw=1.2, label="Texas"),
-        Line2D([0], [0], color=color_p, lw=1.2, label="Partner"),
-        Patch(facecolor=color_pos, alpha=0.35, edgecolor="none", label=r"$A_+$"),
-        Patch(facecolor=color_neg, alpha=0.35, edgecolor="none", label=r"$A_-$"),
-    ]
-    fig.legend(
-        handles=handles,
-        loc="upper center",
-        ncol=4,
-        fontsize=FS_LEGEND,
-        frameon=False,
-        bbox_to_anchor=(0.54, 0.995),
-        columnspacing=1.2,
-        handletextpad=0.35,
-        handlelength=1.4,
-    )
-
-    return save_figure(fig, OUT / "ExtData_Fig2_directional_motivation.png")
-
-
-_SITE_SHORT = {
-    701: "Helios",
-    702: "Denton",
-    711: "Abilene",
-    712: "Shackelford",
-    713: "Milam",
-    731: "DFW",
-    733: "Goodnight",
-    721: "Temple",
-    722: "Fort Worth",
-    741: "San Antonio",
-    751: "Pecos",
-}
-
-
-
-
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     print(build_fig1())
     print(_build_spread_state_board("winter", OUT / "ExtData_Fig2_price_direction_magnitude_winter.png"))
-    print(build_extdata_directional_motivation())
 
 
 if __name__ == "__main__":

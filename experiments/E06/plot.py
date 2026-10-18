@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Fig. 5 and Supplementary Fig. 8 (winter open-loop maps)."""
+"""Fig. 6 and Supplementary Fig. 8 (winter open-loop maps)."""
 
 import csv
 import json

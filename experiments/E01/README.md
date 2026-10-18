@@ -8,4 +8,4 @@ From the deposit root:
 python experiments/E01/plot_demand_maps.py --case background --season summer
 ```
 
-That writes `figures/Fig1_summer_peak_load.png`. The same script draws the other demand boards. Supplementary Fig. 10 (load propagation) is produced from E06.
+That writes `figures/Fig1_summer_peak_load.png`. The same script draws the other demand boards. Supplementary Fig. 9 (load propagation) is produced from E06.

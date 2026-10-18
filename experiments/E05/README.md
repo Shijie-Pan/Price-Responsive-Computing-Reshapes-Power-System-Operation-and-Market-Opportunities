@@ -1,4 +1,4 @@
-# E05 — Fig. 5, Supplementary Fig. 7
+# E05 — Fig. 5, Supplementary Fig. 6
 
 Four Texas scheduling configurations under summer prices (exogenous day-ahead LMP), and the ordinary-load demand-response comparison referenced next to Fig. 5.
 
@@ -10,7 +10,7 @@ python experiments/E05/plot_four_mode.py
 
 That writes `figures/Fig5_four_mode_dc_summer.png`.
 
-Redraw Supplementary Fig. 7 from deposited loadings in `results/ordinary_load_dr/`:
+Redraw Supplementary Fig. 6 from deposited loadings in `results/ordinary_load_dr/`:
 
 ```text
 python experiments/E05/plot_ordinary_dr.py

@@ -1,4 +1,4 @@
-# E04 — Fig. 4, Supplementary Fig. 6
+# E04 — Fig. 4, Supplementary Fig. 5
 
 Texas transmission with the E03 schedules injected onto `experiments/data/networks/texas/elec_s1250.nc`. The three cases are `no_dc`, `baseline` (price-independent), and `reallocation_slack_termination` (price-responsive). The evaluation window is 168 h. Binding line-hours use a 99.9% loading threshold (same definition as Fig. 5). Winter uses the first week stored in the network. Summer overlays the July renewable week from the profile files.
 
@@ -14,7 +14,7 @@ Ramp-limit sensitivity (95% + 24 h cases) from deposited fleet and congestion ta
 python experiments/E04/plot_ramp_limit.py
 ```
 
-That writes `figures/ExtData_Fig4_ramp_limit_sensitivity.png` (Supplementary Fig. 6).
+That writes `figures/ExtData_Fig4_ramp_limit_sensitivity.png` (Supplementary Fig. 5).
 
 The network solve reads merged site power from `experiments/E08/merged_power`, as set in `config/pypsa_texas7.json`. Rebuild those two manuscript scenarios from the E03 power files:
 

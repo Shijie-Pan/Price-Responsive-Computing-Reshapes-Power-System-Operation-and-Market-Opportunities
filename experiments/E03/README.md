@@ -1,4 +1,4 @@
-# E03 — Fig. 3, Supplementary Figs. 3–5
+# E03 — Fig. 3, Supplementary Figs. 2–4
 
 Job-level schedules for six operators and eleven Texas sites. `baseline` is price-independent. `reallocation_slack_termination` is price-responsive. The solve covers 7 days plus 24 hours (192 h). Demand profiles are evaluated over the original 168 hours. Electricity expenditure includes dynamic consumption over the 192-hour scheduling horizon and idle consumption over the original 168 hours.
 
@@ -8,7 +8,7 @@ Job-level schedules for six operators and eleven Texas sites. `baseline` is pric
 python experiments/E03/plot.py
 ```
 
-That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png` (Supplementary Fig. 5).
+That writes `figures/Fig3_job_level_flexibility.png` and `figures/ExtData_Fig3_texas_site_trajectories.png` (Supplementary Fig. 4).
 
 Service-condition costs (price-independent, 95% + 24 h, and 100% with no extension):
 
@@ -16,7 +16,7 @@ Service-condition costs (price-independent, 95% + 24 h, and 100% with no extensi
 python experiments/E03/plot_service_condition.py
 ```
 
-That writes `figures/ExtData_Fig3_service_condition_cost.png` (Supplementary Fig. 4).
+That writes `figures/ExtData_Fig3_service_condition_cost.png` (Supplementary Fig. 3).
 
 Texas campus map:
 
@@ -24,7 +24,7 @@ Texas campus map:
 python experiments/E03/plot_campus_map.py
 ```
 
-That writes `figures/ExtData_Fig3_texas_campus_map.png` (Supplementary Fig. 3).
+That writes `figures/ExtData_Fig3_texas_campus_map.png` (Supplementary Fig. 2).
 
 To solve again, two local inputs are required.
 

@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Supplementary Fig. 5: service-condition electricity cost."""
+"""Supplementary Fig. 3: service-condition electricity cost."""
 
 import sys
 from pathlib import Path

@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Supplementary Fig. 10: load-growth battery arbitrage."""
+"""Supplementary Fig. 11: load-growth battery arbitrage."""
 
 import sys
 from pathlib import Path

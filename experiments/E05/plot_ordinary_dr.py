@@ -1,4 +1,4 @@
-"""Redraw Supplementary Fig. 5 (ordinary-load demand response) from deposited loadings."""
+"""Redraw Supplementary Fig. 6 (ordinary-load demand response) from deposited loadings."""
 
 from __future__ import annotations
 
