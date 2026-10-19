@@ -1,42 +1,6 @@
 {
+  "figure": "ExtData_Fig5",
   "season": "summer",
   "map_hour": 112,
-  "map_utc": "UTC 16:00",
-  "binding_threshold_pct_for_plot_series": 99.9,
-  "panel_mapping": {
-    "a": "Without data centers",
-    "b": "Ordinary-load demand response (ordinary-load DR only)",
-    "c": "Price-independent + demand response (capacity-neutral DC+DR)",
-    "d": "Price-responsive + demand response (E05 endogenous DC + residual DR)"
-  },
-  "cases": {
-    "no_dr": {
-      "label": "Without data centers",
-      "congested_line_hours_at_99p9": 8222,
-      "congested_line_hours_at_100": 8212,
-      "mean_congested_lines_at_99p9": 48.94047619047619,
-      "n_at_map_hour_99p9": 72
-    },
-    "ordinary_dr": {
-      "label": "Ordinary-load demand response",
-      "congested_line_hours_at_99p9": 5114,
-      "congested_line_hours_at_100": 0,
-      "mean_congested_lines_at_99p9": 30.44047619047619,
-      "n_at_map_hour_99p9": 42
-    },
-    "dc_pi_plus_dr": {
-      "label": "Price-independent + demand response",
-      "congested_line_hours_at_99p9": 7492,
-      "congested_line_hours_at_100": 0,
-      "mean_congested_lines_at_99p9": 44.595238095238095,
-      "n_at_map_hour_99p9": 57
-    },
-    "dc_pr_plus_dr": {
-      "label": "Price-responsive + demand response",
-      "congested_line_hours_at_99p9": 7281,
-      "congested_line_hours_at_100": 0,
-      "mean_congested_lines_at_99p9": 43.339285714285715,
-      "n_at_map_hour_99p9": 56
-    }
-  }
+  "binding_threshold_pct_for_plot_series": 99.9
 }

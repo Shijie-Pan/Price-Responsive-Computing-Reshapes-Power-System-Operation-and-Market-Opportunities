@@ -103,25 +103,27 @@ def _bus_frame(path: Path) -> pd.DataFrame:
 
 
 def _observed_prices(region: str) -> np.ndarray:
-    """Day-ahead LMPs in $/MWh. Texas has January and July 2026 only."""
+    """Day-ahead LMPs in $/MWh for January and July 2026."""
     cache = ROOT / "experiments/data/lmp_cache"
 
     def read(path: Path) -> np.ndarray:
         payload = json.loads(path.read_text(encoding="utf-8"))
         return np.asarray(payload["prices"], float)
 
-    if region == "Texas":
-        return np.concatenate(
-            [
-                read(cache / "ERCOT/LZ_NORTH/winter_2026-01.json"),
-                read(cache / "ERCOT/LZ_NORTH/summer_2026-07.json"),
-            ]
-        )
-    if region == "Michigan":
-        return read(cache / "MISO/MICHIGAN.HUB/annual_2025-08_2026-07.json")
-    if region == "California":
-        return read(cache / "CAISO/SP15/annual_2025-08_2026-07.json")
-    raise KeyError(region)
+    hubs = {
+        "Texas": "ERCOT/LZ_NORTH",
+        "Michigan": "MISO/MICHIGAN.HUB",
+        "California": "CAISO/SP15",
+    }
+    if region not in hubs:
+        raise KeyError(region)
+    hub = cache / hubs[region]
+    return np.concatenate(
+        [
+            read(hub / "winter_2026-01.json"),
+            read(hub / "summer_2026-07.json"),
+        ]
+    )
 
 
 def _intraday_range(prices: np.ndarray) -> float:
@@ -391,6 +393,7 @@ def build_figure(table: pd.DataFrame) -> Path:
     xmax = slowest * 1.08
     years = np.linspace(0.0, xmax, 400)
     fastest = max(pair[0] for pair in payback.values())
+    crossings: list[tuple[float, str, str]] = []
     for bus, _name, color in TRACES:
         pi_annual, pr_annual, _keep = payback[bus]
         ax_c.plot(years, pr_annual * years / 1e6, color=color, lw=1.05, ls="-", zorder=3)
@@ -401,28 +404,43 @@ def build_figure(table: pd.DataFrame) -> Path:
             if which == "pr" and abs(year - pi_year) < 1.5:
                 continue
             ax_c.plot([year], [capex_m], marker="o", ms=3.2, color=color, ls="none", zorder=4)
-            # A few points off that crossing. 31 sits left of its dot, 34 sits right of its dot.
-            if bus == "p62" and which == "pi":
-                dx, dy, ha, va = 0, 6, "center", "bottom"
-            elif bus == "p62" and which == "pr":
-                dx, dy, ha, va = 2, -7, "left", "top"
-            elif bus == "p74" and which == "pi":
-                dx, dy, ha, va = -1, -7, "right", "top"
-            elif bus == "p74" and which == "pr":
-                dx, dy, ha, va = 0, 7, "center", "bottom"
-            else:
-                dx, dy, ha, va = 0, 6, "center", "bottom"
-            ax_c.annotate(
-                f"{year:.0f} yr",
-                xy=(year, capex_m),
-                xytext=(dx, dy),
-                textcoords="offset points",
-                color=color,
-                fontsize=MAP_FS_TICK,
-                ha=ha,
-                va=va,
-                zorder=5,
-            )
+            crossings.append((year, color, f"{year:.0f} yr"))
+    crossings.sort(key=lambda row: row[0])
+    cluster = [(y, c, lab) for y, c, lab in crossings if y < 50.0]
+    far = [(y, c, lab) for y, c, lab in crossings if y >= 50.0]
+    rel_anchors = (
+        (-9.0, 1.35, "right", "bottom"),
+        (-1.5, -1.35, "right", "top"),
+        (1.5, 2.85, "left", "bottom"),
+        (9.0, -1.35, "left", "top"),
+    )
+    for i, (year, color, label) in enumerate(cluster):
+        dx, dy, ha, va = rel_anchors[min(i, len(rel_anchors) - 1)]
+        ax_c.annotate(
+            label,
+            xy=(year, capex_m),
+            xytext=(year + dx, capex_m + dy),
+            textcoords="data",
+            color=color,
+            fontsize=MAP_FS_TICK,
+            ha=ha,
+            va=va,
+            zorder=5,
+            clip_on=False,
+        )
+    for year, color, label in far:
+        ax_c.annotate(
+            label,
+            xy=(year, capex_m),
+            xytext=(year, capex_m + 1.15),
+            textcoords="data",
+            color=color,
+            fontsize=MAP_FS_TICK,
+            ha="center",
+            va="bottom",
+            zorder=5,
+            clip_on=False,
+        )
     ax_c.axhline(capex_m, color="0.15", lw=0.8, zorder=1)
     ax_c.legend(
         handles=[
@@ -436,7 +454,8 @@ def build_figure(table: pd.DataFrame) -> Path:
         labelspacing=0.15,
     )
     ax_c.set_xlim(0, xmax)
-    ax_c.set_ylim(0, fastest * xmax / 1e6 * 1.06)
+    ymax = fastest * xmax / 1e6 * 1.06
+    ax_c.set_ylim(-0.35, ymax)
     ax_c.set_xlabel("Year", fontsize=MAP_FS_LAB, labelpad=1)
     ax_c.set_ylabel("Cumulative revenue (M$/MW)", fontsize=MAP_FS_LAB, labelpad=0)
     ax_c.set_title("c  Cumulative revenue", loc="left", fontsize=MAP_FS_TAG, fontweight="bold", pad=3)

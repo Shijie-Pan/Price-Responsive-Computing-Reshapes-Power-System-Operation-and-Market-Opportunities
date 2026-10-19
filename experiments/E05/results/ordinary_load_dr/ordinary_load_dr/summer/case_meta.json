@@ -2,7 +2,7 @@
   "grid": "texas_ordinary_dr_illustrative",
   "case": "ordinary_load_dr",
   "season": "summer",
-  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
   "eval_start": 0,
   "eval_length": 168,
   "dc_injection": false,

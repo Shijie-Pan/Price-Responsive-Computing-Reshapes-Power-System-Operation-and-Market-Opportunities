@@ -15,8 +15,7 @@
   },
   "note": "Single-site assignment; slack + termination (E01 slack_termination).",
   "season": "summer",
-  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
-  "power_csv": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\revision_experiments_20261008_001608\\results\\networks\\texas_four_mode\\temporal_only\\summer\\power_merged_slack_termination_summer_2026-08-21_15-09-12.csv",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
   "eval_start": 0,
   "eval_length": 168,
   "network_base_hours": 168,
@@ -41,5 +40,6 @@
   "finished_utc": "2026-10-13T16:29:51.300116+00:00",
   "congested_line_hours": 0,
   "mean_n_congested_lines": 0.0,
-  "congestion_definition": "AC line |p0| / s_nom >= 100% - 1e-9; links are not included in this count"
+  "congestion_definition": "AC line |p0| / s_nom >= 100% - 1e-9; links are not included in this count",
+  "power_csv_note": "power_merged_slack_termination_summer_2026-08-21_15-09-12.csv"
 }

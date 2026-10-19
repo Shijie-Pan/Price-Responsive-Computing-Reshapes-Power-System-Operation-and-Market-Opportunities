@@ -49,6 +49,8 @@ _PREFIXES = (
     "Microsoft ",
     "OpenAI Stargate ",
     "OpenAI ",
+    "Oracle Stargate ",
+    "Oracle ",
     "CoreWeave ",
     "Amazon ",
 )

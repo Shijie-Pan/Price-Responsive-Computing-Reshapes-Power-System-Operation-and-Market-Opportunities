@@ -3,7 +3,7 @@
   "case": "dc_pi_plus_dr",
   "label": "Price-independent + demand response",
   "season": "summer",
-  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
   "eval_start": 0,
   "eval_length": 168,
   "dc_injection": true,
@@ -11,8 +11,8 @@
   "capacity_neutral_dr": true,
   "dc_profile": {
     "mode": "price_independent_baseline",
-    "power_csv": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\E01\\E03_powerflow\\data\\merged_power\\power_merged_baseline_summer_2026-09-20_21-34-38.csv",
-    "source": "E03_merged_baseline"
+    "source": "experiments/E05/results/ordinary_load_dr/dc_pi_plus_dr/summer",
+    "power_csv_note": "power_merged_baseline_summer_2026-09-20_21-34-38.csv"
   },
   "dr": {
     "flex_share": 0.25,

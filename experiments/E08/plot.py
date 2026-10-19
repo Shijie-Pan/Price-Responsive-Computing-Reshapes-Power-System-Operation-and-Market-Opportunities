@@ -100,10 +100,10 @@ def build_fig4(*, include_agg_cont: bool = True) -> Path:
        on the original 168 h for every model. The job-level trajectory
        is longer; hours at or after 168 are omitted.
        Peak is the combined fleet peak. Ramp and mean absolute error are
-       reported for Amazon Pecos and for the combined fleet. MAE is
+       reported for Operator A (Pecos) and for the combined fleet. MAE is
        MAE = (1/T) sum_t |P^AGG_t − P^job_t| on the corresponding curve.
     b  Combined fleet power, summer.
-    c  Summer power at Amazon Pecos, the site where AGG Site departs
+    c  Summer power at Operator A (Pecos), the site where AGG Site departs
        most from the job-level trace.
     """
     apply_figure_style()
@@ -125,9 +125,9 @@ def build_fig4(*, include_agg_cont: bool = True) -> Path:
         "AGG_POOL": "#1F77B4",
         "AGG_CONT": "#FF7F0E",
     }
-    # Amazon Pecos: largest summer |AGG Site − job-level| among sites.
+    # Operator A / Pecos: largest summer |AGG Site − job-level| among sites.
     focus_site = 751
-    focus_site_label = "Amazon(Pecos)"
+    focus_site_label = "Operator A (Pecos)"
 
     def avg(key: str, metric: str) -> float:
         return 0.5 * (

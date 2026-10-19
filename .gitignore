@@ -42,3 +42,7 @@ experiments/data/eia930/out_ferc714__hourly_estimated_state_demand.parquet
 .mypy_cache/
 .ruff_cache/
 validation/
+
+# Local Fig. 4 alias seeds and optional B1 ramp LOPF outputs (regenerate with --seed-only).
+experiments/E04/results/flexibility/ramp/
+experiments/E04/results/ramp_limit/merged_power/

@@ -14,7 +14,6 @@ import copy
 import csv
 import gc
 import io
-import random
 import sys
 import threading
 import time
@@ -112,12 +111,6 @@ REALLOCATION_PENALTY = 0.0  # rho: default 0.0
 LATE_DELIVERY_PENALTY = 0.0  # eta: default 0.0
 RAMPING_CHARGE = 0.0  # gamma: default 0.0
 UNFINISHED_WORK_PENALTY = 0.0  # phi: default 0.0 (penalty for incomplete service/termination)
-
-# --- Price Discount Configuration ---
-NUM_DISCOUNTED_JOBS = 30  # Number of jobs to randomly select for price discount
-PRICE_DISCOUNT_FACTOR = 0.1  # Price discount factor (0.1 means 10% of original price)
-RANDOM_SEED = 42  # Fixed random seed for reproducibility
-REMOVE_DISCOUNTED_JOBS = False  # If True, remove discounted jobs before optimization; If False, include them with discount price
 
 # --- Output Configuration ---
 LOG_DIR = "experiments/E01/E02_flexibility_contributions/results"
@@ -536,15 +529,7 @@ def calculate_job_revenue_and_energy_cost_CPU(res, system_data, jobs):
                     except:
                         price = 0.0
                     
-                    # Apply job-level price discount if available
-                    discount_factor = 1.0
-                    if hasattr(m, 'pi_job_discount'):
-                        try:
-                            discount_factor = float(pyo.value(m.pi_job_discount[j]))
-                        except:
-                            discount_factor = 1.0
-                    
-                    job_stats[j]["revenue"] += discount_factor * price * c_val
+                    job_stats[j]["revenue"] += price * c_val
     
     # 2. Calculate energy cost for each job
     # Allocate based on delivered compute service c[j,s,t]
@@ -707,43 +692,6 @@ def run_once(days: int, spot_extra_hours: int, scenario: Scenario, job_id_mod: i
     pi_HP = None
     pi_SP = None
     
-    # Identify discounted jobs
-    discounted_job_ids_list = []
-    if NUM_DISCOUNTED_JOBS > 0 and PRICE_DISCOUNT_FACTOR < 1.0:
-        random.seed(RANDOM_SEED)
-        job_ids_list = list(jobs.keys())
-        if len(job_ids_list) > 0:
-            num_to_discount = min(NUM_DISCOUNTED_JOBS, len(job_ids_list))
-            discounted_job_ids_list = random.sample(job_ids_list, num_to_discount)
-            if SHOW_PROGRESS:
-                print(f"[Discount] Identified {len(discounted_job_ids_list)} discounted jobs: {discounted_job_ids_list[:5]}...")
-    
-    # Filter discounted jobs based on REMOVE_DISCOUNTED_JOBS configuration
-    jobs_before_discount_filter = len(jobs)
-    if REMOVE_DISCOUNTED_JOBS and discounted_job_ids_list:
-        jobs = {j: job for j, job in jobs.items() if j not in discounted_job_ids_list}
-        job_active = {
-            (j, t): val for (j, t), val in job_active.items()
-            if j not in discounted_job_ids_list
-        }
-        if SHOW_PROGRESS:
-            print(f"[Filter] REMOVE_DISCOUNTED_JOBS=True: Excluding {len(discounted_job_ids_list)} discounted jobs from optimization", flush=True)
-            print(f"[Filter] Jobs after excluding discounted: {jobs_before_discount_filter} -> {len(jobs)}", flush=True)
-    elif discounted_job_ids_list:
-        if SHOW_PROGRESS:
-            print(f"[Filter] REMOVE_DISCOUNTED_JOBS=False: Keeping {len(discounted_job_ids_list)} discounted jobs in optimization with {PRICE_DISCOUNT_FACTOR}x price", flush=True)
-    
-    # Prepare pi_job_discount
-    if REMOVE_DISCOUNTED_JOBS:
-        pi_job_discount = {job_id: 1.0 for job_id in jobs.keys()}
-    else:
-        pi_job_discount = {}
-        for job_id in jobs.keys():
-            if job_id in discounted_job_ids_list:
-                pi_job_discount[job_id] = PRICE_DISCOUNT_FACTOR
-            else:
-                pi_job_discount[job_id] = 1.0
-
     _gurobi_opts = (
         GUROBI_OPTIONS if str(SOLVER_NAME).lower() == "gurobi" and GUROBI_OPTIONS else None
     )
@@ -761,9 +709,7 @@ def run_once(days: int, spot_extra_hours: int, scenario: Scenario, job_id_mod: i
             kappa_high=1.0,
         )
         res["total_seconds"] = float(time.perf_counter() - t0)
-        res["_discounted_job_ids"] = discounted_job_ids_list
-        res["_fcfs_diagnostics"] = fcfs_diag.as_dict()
-        # Prepare uniform service prices only for revenue bookkeeping (not used in dispatch).
+        res["_fcfs_diagnostics"] = fcfs_diag.as_dict()        # Prepare uniform service prices only for revenue bookkeeping (not used in dispatch).
         pi_HP, pi_SP = _prepare_prices(system_data, H, job_id_mod, jobs, load_balance_only=False)
         if SHOW_PROGRESS:
             d = fcfs_diag.as_dict()
@@ -816,7 +762,6 @@ def run_once(days: int, spot_extra_hours: int, scenario: Scenario, job_id_mod: i
             min_completion_fraction=min_completion_fraction,
             pi_HP=pi_HP,
             pi_SP=pi_SP,
-            pi_job_discount=pi_job_discount,
             load_balance_only=load_balance_only,
             solver_options=_gurobi_opts,
             print_model_stats_before_solve=SHOW_PROGRESS,
@@ -825,8 +770,6 @@ def run_once(days: int, spot_extra_hours: int, scenario: Scenario, job_id_mod: i
 
     res["jobs"] = jobs
     res["system_data"] = system_data
-    if NUM_DISCOUNTED_JOBS > 0 and PRICE_DISCOUNT_FACTOR < 1.0:
-        res["_discounted_job_ids"] = discounted_job_ids_list
 
     # compute job stats
     if scenario.name == "baseline":
@@ -855,8 +798,7 @@ def run_once(days: int, spot_extra_hours: int, scenario: Scenario, job_id_mod: i
             total_c_usage[(s, t)] = total_c_usage.get((s, t), 0.0) + cv
             jt = str(getattr(jobs[j], "job_type", "Spot")).lower()
             unit = float(hp_price.get(s, 0.0) if jt == "hp" else sp_price.get(s, 0.0))
-            discount = float(pi_job_discount.get(j, 1.0))
-            job_stats[j]["revenue"] += discount * unit * cv
+            job_stats[j]["revenue"] += unit * cv
 
         baseline_idle_cost = 0.0
         for s in S:
@@ -1062,11 +1004,6 @@ def run_texas_contribution_study(cfg: TexasE01Config) -> Path:
             f.write(f"  MIN_TASK_DURATION_HOURS = {MIN_TASK_DURATION_HOURS}\n")
         if MAX_TASK_DURATION_HOURS is not None:
             f.write(f"  MAX_TASK_DURATION_HOURS = {MAX_TASK_DURATION_HOURS}\n")
-        if NUM_DISCOUNTED_JOBS > 0 and PRICE_DISCOUNT_FACTOR < 1.0:
-            f.write(f"  NUM_DISCOUNTED_JOBS = {NUM_DISCOUNTED_JOBS}\n")
-            f.write(f"  PRICE_DISCOUNT_FACTOR = {PRICE_DISCOUNT_FACTOR}\n")
-            f.write(f"  RANDOM_SEED = {RANDOM_SEED}\n")
-            f.write(f"  REMOVE_DISCOUNTED_JOBS = {REMOVE_DISCOUNTED_JOBS}\n")
         f.write("\n")
         f.write(f"Total Jobs: {total_jobs_all} (HP: {hp_count_all}, Spot: {spot_count_all})\n")
         if MIN_TASK_DURATION_HOURS is not None or MAX_TASK_DURATION_HOURS is not None:

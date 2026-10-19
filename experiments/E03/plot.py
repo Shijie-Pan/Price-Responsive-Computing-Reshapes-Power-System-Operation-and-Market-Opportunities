@@ -247,7 +247,17 @@ def _site_power_gw(op: str, season: str, scenario: str, sid: int, hours: int = 1
 
 
 _SITE_COLORS = ("#111111", "#0072B2", "#D55E00")
-_SITE_PREFIXES = ("CoreWeave ", "OpenAI Stargate ", "Google ", "Meta ", "Microsoft ", "Amazon ")
+_SITE_PREFIXES = (
+    "CoreWeave ",
+    "OpenAI Stargate ",
+    "OpenAI ",
+    "Oracle Stargate ",
+    "Oracle ",
+    "Google ",
+    "Meta ",
+    "Microsoft ",
+    "Amazon ",
+)
 
 
 def _site_label(spec: dict) -> str:

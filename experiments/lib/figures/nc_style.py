@@ -60,22 +60,33 @@ SCENARIO_ORDER = [
     "reallocation_slack_termination",
 ]
 
-OPERATOR_ORDER = ["coreweave", "oracle", "google", "meta", "microsoft", "amazon"]
+# Manuscript-facing labels only. Internal ids / folders stay amazon…oracle.
+OPERATOR_ORDER = ["amazon", "coreweave", "google", "meta", "microsoft", "oracle"]
 OPERATOR_LABELS = {
-    "coreweave": "CoreWeave",
-    "oracle": "OpenAI",
-    "google": "Google",
-    "meta": "Meta",
-    "microsoft": "Microsoft",
-    "amazon": "Amazon",
+    "amazon": "Operator A",
+    "coreweave": "Operator B",
+    "google": "Operator C",
+    "meta": "Operator D",
+    "microsoft": "Operator E",
+    "oracle": "Operator F",
 }
 OPERATOR_COLORS = {
+    "amazon": "#ff9900",
     "coreweave": "#7b2cbf",
-    "oracle": "#c74634",
     "google": "#1a73e8",
     "meta": "#0866ff",
     "microsoft": "#107c10",
-    "amazon": "#ff9900",
+    "oracle": "#c74634",
+}
+# Source-registry vendors (not used on figure legends). Internal id `oracle`
+# is the Stargate / Oracle-linked group; manuscript label is Operator F.
+OPERATOR_VENDOR = {
+    "amazon": "Amazon",
+    "coreweave": "CoreWeave",
+    "google": "Google",
+    "meta": "Meta",
+    "microsoft": "Microsoft",
+    "oracle": "Oracle",
 }
 SEASON_ORDER = ["summer", "winter"]
 

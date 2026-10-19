@@ -1,0 +1,13 @@
+case,season,loading_source
+no_dc,summer,fig4_hourly
+A0,summer,fig4_hourly
+A1,summer,fig4_hourly
+B1_ramp50,summer,b1_loadings
+B1_ramp25,summer,b1_loadings
+B1_ramp10,summer,b1_loadings
+no_dc,winter,fig4_hourly
+A0,winter,fig4_hourly
+A1,winter,fig4_hourly
+B1_ramp50,winter,b1_loadings
+B1_ramp25,winter,b1_loadings
+B1_ramp10,winter,b1_loadings

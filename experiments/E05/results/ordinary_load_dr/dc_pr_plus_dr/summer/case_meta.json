@@ -3,7 +3,7 @@
   "case": "dc_pr_plus_dr",
   "label": "Price-responsive + demand response",
   "season": "summer",
-  "network": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\data\\networks\\texas\\elec_s1250.nc",
+  "network": "experiments/data/networks/texas/elec_s1250.nc",
   "eval_start": 0,
   "eval_length": 168,
   "dc_injection": true,
@@ -11,8 +11,8 @@
   "capacity_neutral_dr": true,
   "dc_profile": {
     "mode": "endogenous_full_flex",
-    "power_csv": "C:\\Users\\Shijie Pan\\Desktop\\DataCenter\\Nature_Communication\\experiments\\E01\\E05_endogenous_lmp\\results\\iter_10\\merged_power\\power_merged_reallocation_slack_termination_summer_2026-09-23_03-35-58.csv",
-    "source": "E05_endogenous_lmp"
+    "source": "experiments/E05/results/ordinary_load_dr/dc_pr_plus_dr/summer",
+    "power_csv_note": "power_merged_reallocation_slack_termination_summer_2026-09-23_03-35-58.csv"
   },
   "dr": {
     "flex_share": 0.25,

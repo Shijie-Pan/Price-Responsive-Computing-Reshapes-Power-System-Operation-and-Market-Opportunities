@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fig. 6: summer temporal price range and price-taking battery value.
+"""Fig. 7: summer temporal price range and price-taking battery value.
 
 Baseline prices are the open-loop price-independent (FCFS) nodal duals.
 Comparison prices are the last closed-loop iteration of price-responsive
@@ -94,25 +94,27 @@ def _bus_frame(path: Path) -> pd.DataFrame:
 
 
 def _observed_prices(region: str) -> np.ndarray:
-    """Day-ahead LMPs in $/MWh. Texas has January and July 2026 only."""
+    """Day-ahead LMPs in $/MWh for January and July 2026."""
     cache = ROOT / "experiments/data/lmp_cache"
 
     def read(path: Path) -> np.ndarray:
         payload = json.loads(path.read_text(encoding="utf-8"))
         return np.asarray(payload["prices"], float)
 
-    if region == "Texas":
-        return np.concatenate(
-            [
-                read(cache / "ERCOT/LZ_NORTH/winter_2026-01.json"),
-                read(cache / "ERCOT/LZ_NORTH/summer_2026-07.json"),
-            ]
-        )
-    if region == "Michigan":
-        return read(cache / "MISO/MICHIGAN.HUB/annual_2025-08_2026-07.json")
-    if region == "California":
-        return read(cache / "CAISO/SP15/annual_2025-08_2026-07.json")
-    raise KeyError(region)
+    hubs = {
+        "Texas": "ERCOT/LZ_NORTH",
+        "Michigan": "MISO/MICHIGAN.HUB",
+        "California": "CAISO/SP15",
+    }
+    if region not in hubs:
+        raise KeyError(region)
+    hub = cache / hubs[region]
+    return np.concatenate(
+        [
+            read(hub / "winter_2026-01.json"),
+            read(hub / "summer_2026-07.json"),
+        ]
+    )
 
 
 def _annual_revenue(prices: np.ndarray) -> float:

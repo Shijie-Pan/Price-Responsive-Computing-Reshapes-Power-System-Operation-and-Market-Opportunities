@@ -64,7 +64,6 @@ def solve_data_center_block_jobs_CPU(
     # When allow_termination=True: require sum_{j,s,t} c >= frac * sum_j W[j] (e.g. 0.95 = 95% total service).
     pi_HP=None,  # Unit price for HP jobs: dict[s][t] -> $/vCPU-hour, or None if not provided
     pi_SP=None,  # Unit price for SP jobs: dict[s][t] -> $/vCPU-hour, or None if not provided
-    pi_job_discount=None,  # Price discount factor per job: dict[j] -> float (default 1.0)
     load_balance_only: bool = False,  # If True, minimize load imbalance instead of maximizing net revenue
     solver_options: Mapping[str, float | int | str] | None = None,
     # Gurobi: e.g. MIPGap, TimeLimit, Threads, NodefileStart (see compare_flexibility_contributions_CPU.GUROBI_OPTIONS)
@@ -234,16 +233,6 @@ def solve_data_center_block_jobs_CPU(
     # Prices as Params (time-indexed)
     m.pi_HP = pyo.Param(m.S, m.T, initialize=lambda _m, s, t: float(pi_HP[s][t]), within=pyo.NonNegativeReals)
     m.pi_SP = pyo.Param(m.S, m.T, initialize=lambda _m, s, t: float(pi_SP[s][t]), within=pyo.NonNegativeReals)
-    
-    # Price discount factor per job (default 1.0 = no discount)
-    if pi_job_discount is None:
-        pi_job_discount = {j: 1.0 for j in J}
-    else:
-        pi_job_discount = pi_job_discount.copy()
-        for j in J:
-            if j not in pi_job_discount:
-                pi_job_discount[j] = 1.0
-    m.pi_job_discount = pyo.Param(m.J, initialize=pi_job_discount, within=pyo.NonNegativeReals, default=1.0)
 
     # Service price: pi_svc[s,t] (combines HP and SP prices based on job type)
     def _pi_svc_init(_m, j, s, t):
@@ -251,7 +240,7 @@ def solve_data_center_block_jobs_CPU(
             return float(pi_HP[s][t])
         else:
             return float(pi_SP[s][t])
-    
+
     m.pi_svc = pyo.Param(m.J, m.S, m.T, initialize=_pi_svc_init, within=pyo.NonNegativeReals)
 
     # --------------------------------------------------------------
@@ -425,7 +414,7 @@ def solve_data_center_block_jobs_CPU(
         for t in _m.T:
             for s in _m.S:
                 for j in _m.J:
-                    revenue += _m.pi_job_discount[j] * _m.pi_svc[j, s, t] * _m.c[j, s, t]
+                    revenue += _m.pi_svc[j, s, t] * _m.c[j, s, t]
 
         # 2) Electricity cost
         # Dynamic cost: sum_{s,t in full horizon} pi_ele[s,t] * PUE[s] * (P_busy[s]-P_idle[s]) * L[s,t]/L_bar[s] * Delta_t
