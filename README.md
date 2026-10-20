@@ -45,10 +45,10 @@ python experiments/E08/plot.py
 | Supplementary Fig. 4 | `experiments/E03/figures/ExtData_Fig3_texas_site_trajectories.png` |
 | Supplementary Fig. 5 | `experiments/E04/figures/ExtData_Fig4_ramp_limit_sensitivity.png` |
 | Supplementary Fig. 6 | `experiments/E05/figures/ExtData_Fig5_ordinary_load_dr_summer.png` |
-| Supplementary Fig. 7 | `experiments/E06/figures/ExtData_Fig6_usa_endogenous_closed_loop.png` |
-| Supplementary Fig. 8 | `experiments/E06/figures/ExtData_Fig6_usa_endogenous_maps_winter.png` |
-| Supplementary Fig. 9 | `experiments/E06/figures/ExtData_Fig6_load_propagation_full_flex.png` |
-| Supplementary Fig. 10 | `experiments/E07/figures/ExtData_Fig7_hydro_arbitrage.png` |
-| Supplementary Fig. 11 | `experiments/E07/figures/ExtData_Fig7_load_growth_battery_arbitrage.png` |
+| Supplementary Fig. 7 | `experiments/E06/figures/ExtData_Fig6_load_propagation_full_flex.png` |
+| Supplementary Fig. 8 | `experiments/E06/figures/ExtData_Fig6_usa_endogenous_closed_loop.png` |
+| Supplementary Fig. 9 | `experiments/E06/figures/ExtData_Fig6_usa_endogenous_maps_winter.png` |
+| Supplementary Fig. 10 | `experiments/E07/figures/ExtData_Fig7_load_growth_battery_arbitrage.png` |
+| Supplementary Fig. 11 | `experiments/E07/figures/ExtData_Fig7_hydro_arbitrage.png` |
 
 Fig. 6 uses `experiments/E06/results/closed_loop/iter_06` for the price-responsive case.

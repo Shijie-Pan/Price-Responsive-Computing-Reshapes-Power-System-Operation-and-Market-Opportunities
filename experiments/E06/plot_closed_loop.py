@@ -1,5 +1,5 @@
 from __future__ import annotations
-"""Supplementary Fig. 7: closed-loop iteration residuals."""
+"""Supplementary Fig. 8: closed-loop iteration residuals."""
 
 import sys
 from pathlib import Path

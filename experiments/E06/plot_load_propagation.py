@@ -1,4 +1,4 @@
-"""Supplementary Fig. 9: expanded data-center capacity."""
+"""Supplementary Fig. 7: expanded data-center capacity."""
 
 from __future__ import annotations
 
