@@ -52,3 +52,8 @@ python experiments/E08/plot.py
 | Supplementary Fig. 11 | `experiments/E07/figures/ExtData_Fig7_hydro_arbitrage.png` |
 
 Fig. 6 uses `experiments/E06/results/closed_loop/iter_06` for the price-responsive case.
+
+## Archived version
+
+The version accompanying this paper is archived on Zenodo:
+https://doi.org/10.5281/zenodo.23507446
