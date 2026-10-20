@@ -1,4 +1,4 @@
-# Price-Responsive Computing Reshapes Power-System Operation and Market Opportunities
+# The Cheap Hours Don't Stay Cheap: Price-Chasing Data Centers Reshape Grids and Markets
 
 Code, configuration, and deposited results for the manuscript experiments. E01–E08 correspond to Figs. 1–8. Each experiment folder has a README with redraw and recompute commands. Supplementary figures that share a main-figure number live in the same `E0x` folder as that figure.
 
