@@ -303,10 +303,13 @@ def build_fig3() -> Path:
     bot.set_axis_off()
     bot.set_xlim(0, 1)
     bot.set_ylim(0, 1)
+    bot_labels = {
+        "no_dc": NODC,
+        "baseline": FCFS,
+        "reallocation_slack_termination": FULL,
+    }
     bot_entries = [
-        (COLOR_NODC, NODC),
-        (COLOR_FCFS, FCFS),
-        (COLOR_FULL, FULL),
+        (CONGESTION_LINE_COLORS[key], bot_labels[key]) for key in CONGESTION_PLOT_KEYS
     ]
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
