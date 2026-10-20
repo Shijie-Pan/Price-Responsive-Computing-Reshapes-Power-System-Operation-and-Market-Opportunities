@@ -545,7 +545,7 @@ def build_propagation_board(season: str, case: str = "background") -> Path:
         ax.text(
             0.03,
             0.04,
-            f"{hour:02d}:00",
+            f"UTC {hour:02d}:00",
             transform=ax.transAxes,
             fontsize=MAP_FS_TAG,
             fontweight="bold",
@@ -740,7 +740,7 @@ def build_summary_board(season: str = "summer", only: str | None = None) -> Path
             ax.text(
                 0.03,
                 0.05,
-                f"{hour:02d}:00",
+                f"UTC {hour:02d}:00",
                 transform=ax.transAxes,
                 fontsize=MAP_FS_TICK,
                 fontweight="bold",
@@ -884,7 +884,7 @@ def build_contrast_board(season: str = "summer") -> Path:
             ax.text(
                 0.03,
                 0.05,
-                f"{hour:02d}:00",
+                f"UTC {hour:02d}:00",
                 transform=ax.transAxes,
                 fontsize=MAP_FS_TICK,
                 fontweight="bold",
